@@ -1,0 +1,113 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Gemeente Amsterdam | Airbnb Dashboard</title>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css?v=2.0">
+
+  <!-- Fonts CSS -->
+  <link rel="stylesheet" href="fonts/font.css?v=1.0">
+
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+  <!-- Sortable tables -->
+  <script src="js/sorttable.js"></script>
+
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <img class="logo" src="img/logo.png" alt="Gemeente Amsterdam logo" />
+            </li>
+            <hr>
+            <li>
+                <a href="index.html"><i class="material-icons">dashboard</i>Dashboard</a>
+            </li>
+            <li>
+                <a href="neighbourhoods.html"><i class="material-icons">pin_drop</i>Neighbourhoods</a>
+            </li>
+            <li>
+                <a href="duplicates.html" class="current"><i class="material-icons">people</i>Duplicates</a>
+            </li>
+            <hr>
+            <li>
+                <a href="#"><i class="material-icons">directions_run</i>Log out</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+              <div class="col">
+                <div class="databox">
+                  <h2>Duplicates</h2>
+
+                  <table id="duplicates" class="table table-sm table-big sortable" cellspacing="0" width="100%">
+                    <thead>
+                      <tr>
+                        <th class="th-sm">
+
+                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
+                        </th>
+                        <th class="th-sm">
+                          ID
+                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
+                        </th>
+                        <th class="th-sm">
+                          ID
+                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
+                        </th>
+                        <th class="th-sm">
+                          match
+                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
+                        </th>
+                        <th class="th-sm action-buttons sorttable_nosort">
+                          actions
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS, then custom JS -->
+  <script src="js/jquery-3.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <script src="js/scripts.js?v=3.0"></script>
+</body>
+</html>
