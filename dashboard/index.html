@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/styles.css?v=2.0">
+  <link rel="stylesheet" href="css/styles.css?v=3.0">
 
   <!-- Fonts CSS -->
   <link rel="stylesheet" href="fonts/font.css?v=1.0">
@@ -66,7 +66,7 @@
                   <div class="row">
                     <div class="col-sm-8">
                       <div class="databox map-overview">
-                        <iframe src="./leaflet/Mapleaflet.html"></iframe>
+                        <iframe src="./map.html"></iframe>
                       </div>
                     </div>
                     <div class="col-sm-4">
@@ -121,21 +121,30 @@
               </div>
             </div>
             <div class="row">
-              <div id="dashboard-duplicate-accounts" class="col-sm-6">
-                <div class="databox">
-                  <h2>Duplicate accounts</h2>
-
-                  <div class="rows"></div>
-
-                  <a href="duplicates.html" class="databox-link">
-                    Show all duplicate accounts
-                  </a>
-
+              <div class="col-sm-4">
+                <div id="dashboard-overview-stats" class="databox">
+                  <h2>Overview stats</h2>
+                  <p>
+                    <i class="material-icons">filter_none</i>
+                    <span id="stats-total-duplicates">?</span> <br/>duplicates found
+                  </p>
+                  <p>
+                    <i class="material-icons">check</i>
+                    <span id="stats-total-match">?</span> <br/>marked as match
+                  </p>
+                  <p>
+                    <i class="material-icons">close</i>
+                    <span id="stats-total-no-match">?</span> <br/>marked as not a match
+                  </p>
+                  <p>
+                    <i class="material-icons">block</i>
+                    <span id="stats-total-unsolvable">?</span> <br/>marked as unsolvable
+                  </p>
                 </div>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-8">
                 <div id="dashboard-duplicate-listings" class="databox">
-                  <h2>Duplicate listings</h2>
+                  <h2>Top duplicate listings (<span id="total-showing">4</span> of <span id="total-duplicates">?</span>)</h2>
 
                   <div class="rows"></div>
 

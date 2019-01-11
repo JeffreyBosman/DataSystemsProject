@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/styles.css?v=4.0">
+  <link rel="stylesheet" href="css/styles.css?v=2.0">
 
   <!-- Fonts CSS -->
   <link rel="stylesheet" href="fonts/font.css?v=1.0">
@@ -25,6 +25,7 @@
 
   <!-- Sortable tables -->
   <script src="js/sorttable.js"></script>
+
 
 </head>
 
@@ -58,40 +59,52 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-              <div class="col">
-                <div class="databox">
-                  <h2>Duplicates</h2>
+      <div class="container-fluid">
+        <a class="back-link" href="./duplicates.html">
+          <i class="material-icons">keyboard_arrow_left</i>
+          Back to duplicates overview
+        </a>
+        <h1><i class="material-icons">filter_none</i> ID1 & ID2</h1>
 
-                  <table id="duplicates" class="table table-sm table-big sortable" cellspacing="0" width="100%">
-                    <thead>
-                      <tr>
-                        <th class="th-sm">
-                          listing ID
-                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
-                        </th>
-                        <th class="th-sm">
-                          listing ID
-                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
-                        </th>
-                        <th class="th-sm">
-                          match
-                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
-                        </th>
-                        <th class="th-sm action-buttons sorttable_nosort">
-                          actions
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                  </table>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="databox duplicate-menu">
+              Match: <b>X%</b>
 
-                </div>
+              <div class="action-buttons">
+                <button type="button" class="btn btn-primary">
+                  <i class="material-icons">check</i>Confirm match
+                </button>
+                <button type="button" class="btn btn-primary">
+                  <i class="material-icons">close</i>Delete match
+                </button>
+                <button type="button" class="btn btn-primary">
+                  <i class="material-icons">block</i>Mark as unresolvable
+                </button>
               </div>
             </div>
+          </div>
         </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="databox">
+              match overview
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="databox">
+              overview 1
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="databox">
+              overview 2
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- /#page-content-wrapper -->
 
@@ -104,6 +117,6 @@
   <script src="js/jquery-3.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-  <script src="js/scripts.js?v=1.0"></script>
+  <script src="js/scripts.js"></script>
 </body>
 </html>

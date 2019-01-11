@@ -225,20 +225,22 @@ table tbody td.action-buttons {
   text-align: right;
 }
 
-table tbody td.action-buttons button {
+.action-buttons button {
   margin-left: 10px;
   color: #FF0707;
   background: white;
   border: 1px solid #FF0707;
 }
 
-table tbody td.action-buttons button:hover {
-  background-color: #FF0707;
-  color: white;
-  border: 1px solid #FF0707;
+.action-buttons button:hover,
+.action-buttons button:focus,
+.action-buttons button:active  {
+  background-color: #FF0707 !important;
+  color: white !important;
+  border: 1px solid #FF0707 !important;
 }
 
-table tbody td.action-buttons button .material-icons {
+.action-buttons button .material-icons {
   font-size: 16px;
   margin-right: 10px;
   vertical-align: middle;
@@ -405,7 +407,7 @@ table tbody td.action-buttons button .material-icons {
 
 .dpl-row .dpl-icon .material-icons {
   font-size: 17px;
-  color: #94979B;
+  color: #aaa;
   margin-top: 2px;
 }
 
@@ -420,4 +422,71 @@ table tbody td.action-buttons button .material-icons {
   font-size: 14px;
   color: #AEB3BD;
   text-align: right;
+}
+
+/* DASHBOARD - DATABOX - Overview stats ---------------------------------- */
+
+#dashboard-overview-stats p {
+  font-size: 12px;
+  line-height: 14px;
+  margin-bottom: 25px;
+}
+
+#dashboard-overview-stats p:last-child {
+  margin-bottom: -6px;
+}
+
+#dashboard-overview-stats p span {
+  font-size: 30px;
+  line-height: 16px;
+  font-weight: 800;
+}
+
+#dashboard-overview-stats p .material-icons {
+  color: black;
+  font-size: 19px;
+  vertical-align: middle;
+  margin-right: 5px;
+  margin-top: -14px;
+  font-weight: 700;
+}
+
+/* DETAILED VIEWS  ------------------------------------------------- */
+
+.back-link {
+  font-family: Avenir-Medium;
+  font-size: 12px;
+  color: #FF1211;
+}
+
+.back-link:hover {
+  color: #FF1211;
+}
+
+.back-link .material-icons {
+  vertical-align: middle;
+  font-size: 16px;
+  margin-top: -2px;
+  margin-left: -5px;
+}
+
+h1 {
+  font-family: Avenir-Medium;
+  font-size: 20px;
+  color: #1B253A;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
+h1 .material-icons {
+  font-size: 16px;
+  vertical-align: middle;
+  margin-right: 3px;
+  margin-top: -5px;
+}
+
+.duplicate-menu .action-buttons {
+  display: inline-block;
+  float: right;
 }

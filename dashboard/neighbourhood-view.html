@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/styles.css?v=4.0">
+  <link rel="stylesheet" href="css/styles.css?v=2.0">
 
   <!-- Fonts CSS -->
   <link rel="stylesheet" href="fonts/font.css?v=1.0">
@@ -25,6 +25,7 @@
 
   <!-- Sortable tables -->
   <script src="js/sorttable.js"></script>
+
 
 </head>
 
@@ -43,10 +44,10 @@
                 <a href="index.html"><i class="material-icons">dashboard</i>Dashboard</a>
             </li>
             <li>
-                <a href="neighbourhoods.html"><i class="material-icons">pin_drop</i>Neighbourhoods</a>
+                <a href="neighbourhoods.html" class="current"><i class="material-icons">pin_drop</i>Neighbourhoods</a>
             </li>
             <li>
-                <a href="duplicates.html" class="current"><i class="material-icons">people</i>Duplicates</a>
+                <a href="duplicates.html"><i class="material-icons">people</i>Duplicates</a>
             </li>
             <hr>
             <li>
@@ -59,36 +60,39 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
         <div class="container-fluid">
-            <div class="row">
-              <div class="col">
-                <div class="databox">
-                  <h2>Duplicates</h2>
+          <a class="back-link" href="./neighbourhoods.html">
+            <i class="material-icons">keyboard_arrow_left</i>
+            Back to neightbourhood overview
+          </a>
+          <h1>Neighbourhood name</h1>
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="databox map-overview">
 
-                  <table id="duplicates" class="table table-sm table-big sortable" cellspacing="0" width="100%">
-                    <thead>
-                      <tr>
-                        <th class="th-sm">
-                          listing ID
-                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
-                        </th>
-                        <th class="th-sm">
-                          listing ID
-                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
-                        </th>
-                        <th class="th-sm">
-                          match
-                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
-                        </th>
-                        <th class="th-sm action-buttons sorttable_nosort">
-                          actions
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                  </table>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="databox map-menu">
+                <h2>Overview</h2>
 
-                </div>
+                <p>x listings</p>
+                <p>x listings per ha</p>
+                <p>&euro;x per night on average</p>
+                <p>x% listings with high availability</p>
+                <p>x% hosts have multi-listings</p>
+
+                <br/>
+                <h2>Top hosts in this area</h2>
+
+                <p>some hosts here</p>
+
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="databox">
+                something extra
               </div>
             </div>
         </div>
@@ -104,6 +108,6 @@
   <script src="js/jquery-3.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-  <script src="js/scripts.js?v=1.0"></script>
+  <script src="js/scripts.js"></script>
 </body>
 </html>
