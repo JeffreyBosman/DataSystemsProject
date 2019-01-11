@@ -1,4 +1,5 @@
-[
+{
+  "duplicates":[
     {
       "duplicate_ID":"5",
       "type":"listings",
@@ -72,3 +73,4 @@
       "timestamp":"01-01-2019"
     }
   ]
+}
