@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/styles.css?v=5.0">
+  <link rel="stylesheet" href="css/styles.css?v=2.0">
 
   <!-- Fonts CSS -->
   <link rel="stylesheet" href="fonts/font.css?v=1.0">
@@ -30,7 +30,7 @@
   <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
 
   <!-- Set view -->
-  <script charset="utf-8"> var view = "neighbourhoods"; </script>
+  <script charset="utf-8"> var view = "neighbourhood-view"; </script>
 </head>
 
 <body>
@@ -65,63 +65,38 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-              <div class="col">
-                <div class="databox">
-                  <h2>Neighbourhoods</h2>
+      <div class="container-fluid">
+        <a class="back-link" href="./neighbourhoods.html">
+          <i class="material-icons">keyboard_arrow_left</i>
+          Back to neightbourhood overview
+        </a>
+        <h1 id="neighbourhood-name"><?php echo $_GET["name"]; ?></h1>
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="databox map-overview">
 
-                  <table id="neighbourhoods" class="table table-sm table-big sortable" cellspacing="0" width="100%">
-                    <thead>
-                      <tr>
-                        <th class="th-sm">
+              <!--- HIER MOET DE KAART KOMEN -->
 
-                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
-                        </th>
-                        <th class="th-sm">
-                          name
-                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
-                        </th>
-                        <th class="th-sm">
-                          # accounts
-                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
-                        </th>
-                        <th class="th-sm">
-                          # listings
-                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
-                        </th>
-                        <th class="th-sm">
-                          listings/ha
-                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
-                        </th>
-                        <th class="th-sm">
-                          price/night
-                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
-                        </th>
-                        <th class="th-sm">
-                          high availability
-                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
-                        </th>
-                        <th class="th-sm">
-                          multi-listings
-                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
-                        </th>
-                        <th class="th-sm">
-                          duplicates
-                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
-                        </th>
-                        <th class="th-sm">
-                          risk ranking
-                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
             </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="databox map-menu">
+              <h2>Overview</h2>
+
+              <p><span id="dupl-no-accounts"></span> accounts</p>
+              <p><span id="dupl-no-listings"></span> listings</p>
+              <p><span id="dupl-listings-ha"></span> listings per ha</p>
+              <p>&euro;<span id="dupl-price"></span> per night on average</p>
+              <p><span id="dupl-high-avail"></span>% listings with high availability</p>
+              <p><span id="dupl-multi-list"></span>% hosts have multi-listings</p>
+
+              <br/>
+              <h2>Top hosts in this area</h2>
+
+              <p>some hosts here</p>
+
+            </div>
+          </div>
         </div>
     </div>
   </div>
@@ -154,7 +129,11 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
   <!-- Data -->
+  <script type="text/javascript" src="data/duplicates.js"></script>
+  <script type="text/javascript" src="data/listings.js"></script>
+  <script type="text/javascript" src="data/accounts.js"></script>
   <script type="text/javascript" src="data/neighbourhoods.js"></script>
+  <script type="text/javascript" src="data/neighbourhoodsLocations.js"></script>
 
   <!-- Custom js -->
   <script src="js/scripts.js"></script>

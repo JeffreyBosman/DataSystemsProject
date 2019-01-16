@@ -1,3 +1,7 @@
+/* --------------------------------------------------------------------------------------------------------- */
+/* GENERAL STYLES ------------------------------------------------------------------------------------------ */
+/* --------------------------------------------------------------------------------------------------------- */
+
 * {
 
   -webkit-transition: all 0.2s ease;
@@ -5,75 +9,150 @@
   -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
-
 body {
   font-family: Avenir, sans-serif;
   overflow-x: hidden;
   background: #F5F7FA;
 }
+.table {
+  margin-top: -20px;
+}
+.table tbody td {
+    vertical-align: middle;
+}
 
-.tgl {
-  display: none;
+/* --------------------------------------------------------------------------------------------------------- */
+/* HEADING STYLES ------------------------------------------------------------------------------------------ */
+/* --------------------------------------------------------------------------------------------------------- */
+
+h1 {
+  font-family: Avenir-Medium;
+  font-size: 20px;
+  color: #1B253A;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  margin-top: 5px;
 }
-.tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl + .tgl-btn {
-  box-sizing: border-box;
+h1 .material-icons {
+  font-size: 16px;
+  vertical-align: middle;
+  margin-right: 3px;
+  margin-top: -5px;
 }
-.tgl::-moz-selection, .tgl:after::-moz-selection, .tgl:before::-moz-selection, .tgl *::-moz-selection, .tgl *:after::-moz-selection, .tgl *:before::-moz-selection, .tgl + .tgl-btn::-moz-selection {
-  background: none;
+
+/* --------------------------------------------------------------------------------------------------------- */
+/* BUTTON STYLES ------------------------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------------- */
+
+.action-buttons button.btn-primary {
+  margin-right: 6px;
+  color: white;
+  background: #FF0707;
+  border: 1px solid #FF0707;
 }
-.tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl + .tgl-btn::selection {
-  background: none;
+.action-buttons button.btn-secondary {
+  margin-right: 6px;
+  color: #FF0707;
+  background: white;
+  border: 1px solid #FF0707;
 }
-.tgl + .tgl-btn {
-  outline: 0;
-  display: inline-block;
-  width: 2.4em;
-  height: 1.2em;
-  position: relative;
-  padding-bottom: 0;
-  margin-top: 4px;
+.action-buttons button:hover,
+.action-buttons button:focus,
+.action-buttons button:active  {
+  background-color: #FF0707 !important;
+  color: white !important;
+  border: 1px solid #FF0707 !important;
+  opacity: 0.8;
+}
+.action-buttons button .material-icons {
+  font-size: 16px;
   margin-right: 10px;
   vertical-align: middle;
+  margin-top: -4px;
+}
+
+/* --------------------------------------------------------------------------------------------------------- */
+/* TABLE STYLES -------------------------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------------- */
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+  bottom: .5em;
+}
+.table thead th {
+  opacity: 0.6;
+  font-family: Avenir-Medium;
+  font-weight: 400;
+  font-size: 16px;
+  color: #94979B;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: 0px;
+  border-bottom: 1px solid #dee2e6;
+}
+.table tbody td {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.table thead .material-icons {
+  font-size: 14px;
+  vertical-align: middle;
+}
+.table thead .material-icons:hover {
   cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
 }
-.tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
-  position: relative;
-  display: block;
-  content: "";
-  width: 48%;
-  height: 100%;
+.table-big {
+  margin-left: -30px;
+  width: calc(100% + 60px);
+  margin-bottom: -30px;
 }
-.tgl + .tgl-btn:after {
-  left: 0;
+.table-big tr th:first-child,
+.table-big tr td:first-child {
+  padding-left: 30px;
 }
-.tgl + .tgl-btn:before {
-  display: none;
+.table-big tr th:last-child,
+.table-big tr td:last-child {
+  padding-right: 30px;
 }
-.tgl:checked + .tgl-btn:after {
-  left: 51%;
+table tbody td.risk-label .material-icons,
+table tbody td.duplicate-label .material-icons {
+  font-size: 14px;
+  margin-right:10px;
+}
+table tbody td.duplicate-label .material-icons {
+  font-size: 16px;
+  color: #999;
+}
+table tbody td.risk-label #sort,
+table tbody td.duplicate-label #sort {
+  display: inline-block;
+  width: 0;
+  font-size: 5px;
+  opacity: 0;
+  margin-left: 0px;
+}
+table tbody td.euro:before {
+  content:'\20AC \00a0';
+}
+table tbody td.perc:after {
+  content:'%';
+}
+table thead th.action-buttons,
+table tbody td.action-buttons {
+  text-align: right;
 }
 
-.tgl-light + .tgl-btn {
-  background: #EAEAEA;
-  border-radius: 2em;
-  padding: 2px;
-  transition: all .4s ease;
-}
-.tgl-light + .tgl-btn:after {
-  border-radius: 50%;
-  background: #fff;
-  transition: all .2s ease;
-}
-.tgl-light:checked + .tgl-btn {
-  background: #FF1211;
-}
-
-#wrapper {
-}
+/* --------------------------------------------------------------------------------------------------------- */
+/* SIDEBAR STYLES ------------------------------------------------------------------------------------------ */
+/* --------------------------------------------------------------------------------------------------------- */
 
 #sidebar-wrapper {
   z-index: 1000;
@@ -90,165 +169,6 @@ body {
   transition: all 0.5s ease;
   box-shadow: 1px 0 10px 0 rgba(0,0,0,0.03);
 }
-
-#page-content-wrapper {
-  width: calc(100% - 250px);
-  background: #F5F7FA;
-  padding: 15px;
-  margin-left: 250px;
-}
-
-#page-content-wrapper .databox {
-  background: white;
-  padding: 30px;
-  border-radius: 4px;
-  box-shadow: 0 0 5px 0 rgba(232,232,232,0.53);
-}
-
-#page-content-wrapper .container-fluid > .row {
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-
-.databox h2 {
-  font-family: Avenir-Medium;
-  font-size: 14px;
-  color: #AEB3BD;
-  letter-spacing: 0.7px;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  letter-spacing: 1px;
-}
-
-.databox .databox-link {
-  text-align: center;
-  font-size: 14px;
-  color: #FF1211;
-  font-family: Avenir-Medium;
-  margin: 0 auto;
-  display: block;
-  margin: 10px 0 -10px 0;
-}
-
-/* Tables ------------------------------------------- */
-
-table.dataTable thead .sorting:after,
-table.dataTable thead .sorting:before,
-table.dataTable thead .sorting_asc:after,
-table.dataTable thead .sorting_asc:before,
-table.dataTable thead .sorting_asc_disabled:after,
-table.dataTable thead .sorting_asc_disabled:before,
-table.dataTable thead .sorting_desc:after,
-table.dataTable thead .sorting_desc:before,
-table.dataTable thead .sorting_desc_disabled:after,
-table.dataTable thead .sorting_desc_disabled:before {
-  bottom: .5em;
-}
-
-.table thead th {
-  opacity: 0.6;
-  font-family: Avenir-Medium;
-  font-weight: 400;
-  font-size: 16px;
-  color: #94979B;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-top: 0px;
-  border-bottom: 1px solid #dee2e6;
-}
-
-.table tbody td {
-  padding-top: 16px;
-  padding-bottom: 16px;
-}
-
-.table thead .material-icons {
-  font-size: 14px;
-  vertical-align: middle;
-}
-
-.table thead .material-icons:hover {
-  cursor: pointer;
-}
-
-.table-big {
-  margin-left: -30px;
-  width: calc(100% + 60px);
-  margin-bottom: -30px;
-}
-
-#neighbourhoods tr:hover td {
-  background: #f3f3f3;
-  cursor: pointer;
-}
-
-.table-big tr th:first-child,
-.table-big tr td:first-child {
-  padding-left: 30px;
-}
-
-.table-big tr th:last-child,
-.table-big tr td:last-child {
-  padding-right: 30px;
-}
-
-table tbody td.risk-label .material-icons,
-table tbody td.duplicate-label .material-icons {
-  font-size: 14px;
-  margin-right:10px;
-}
-
-table tbody td.duplicate-label .material-icons {
-  font-size: 16px;
-  color: #999;
-}
-
-table tbody td.risk-label #sort,
-table tbody td.duplicate-label #sort {
-  display: inline-block;
-  width: 0;
-  font-size: 5px;
-  opacity: 0;
-  margin-left: 0px;
-}
-
-table tbody td.euro:before {
-  content:'\20AC \00a0';
-}
-
-table tbody td.perc:after {
-  content:'%';
-}
-
-table thead th.action-buttons,
-table tbody td.action-buttons {
-  text-align: right;
-}
-
-.action-buttons button {
-  margin-left: 10px;
-  color: #FF0707;
-  background: white;
-  border: 1px solid #FF0707;
-}
-
-.action-buttons button:hover,
-.action-buttons button:focus,
-.action-buttons button:active  {
-  background-color: #FF0707 !important;
-  color: white !important;
-  border: 1px solid #FF0707 !important;
-}
-
-.action-buttons button .material-icons {
-  font-size: 16px;
-  margin-right: 10px;
-  vertical-align: middle;
-  margin-top: -4px;
-}
-
-/* SIDEBAR Styles -------------------------------------------------- */
-
 .sidebar-nav {
   position: absolute;
   top: 0;
@@ -308,69 +228,125 @@ table tbody td.action-buttons {
   width: 150px;
 }
 
-/* DASHBOARD Styles --------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------------- */
+/* MAIN CONTENT STYLES ------------------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------------- */
 
+#page-content-wrapper {
+  width: calc(100% - 250px);
+  background: #F5F7FA;
+  padding: 15px;
+  margin-left: 250px;
+}
+#page-content-wrapper .container-fluid > .row {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.databox {
+  background: white;
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: 0 0 5px 0 rgba(232,232,232,0.53);
+}
+.databox h2 {
+  font-family: Avenir-Medium;
+  font-size: 15px;
+  color: #AEB3BD;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+.databox .databox-link {
+  text-align: center;
+  font-size: 14px;
+  color: #FF1211;
+  font-family: Avenir-Medium;
+  margin: 0 auto;
+  display: block;
+  margin: 10px 0 -10px 0;
+}
+.databox .databox-link .material-icons {
+  vertical-align: middle;
+  font-size: 16px;
+  margin-top: -2px;
+}
 #page-content-wrapper .databox-alt {
   padding: 0;
 }
-
 #page-content-wrapper .databox-alt .col-sm-8 {
   padding-right: 0;
 }
-
 #page-content-wrapper .databox-alt .col-sm-4 {
   padding-left: 0;
 }
 
-/* DASHBOARD - DATABOX - Map ----------------------------------------- */
+/* --------------------------------------------------------------------------------------------------------- */
+/* LOGIN STYLES -------------------------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------------- */
 
-#page-content-wrapper .map-overview {
+.login {
+  margin: 0 40px;
+}
+.login form label {
+  font-weight: 500;
+}
+.login form button {
+  display: inline-block;
+  font-weight: 500;
+}
+.login form button:hover {
+  opacity: 0.8
+}
+
+/* --------------------------------------------------------------------------------------------------------- */
+/* DASHBOARD STYLES ---------------------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------------- */
+
+/* MAP BOX ------------------------------------------------------------------------------------------------- */
+
+.map-overview {
   background: white;
   height: 100%;
-  min-height: 500px;
+  min-height: 450px;
   background-image: url('../img/loading.gif');
   background-size: 20%;
   background-position: center center;
   padding: 0;
   background-repeat: no-repeat;
 }
-
-#page-content-wrapper .map-overview iframe {
+.map-overview iframe {
   width: 100%;
   height: 100%;
   border: 0;
   background: transparent;
 }
-
-#page-content-wrapper .map-menu {
+.map-menu {
   position: relative;
   background: white;
   height: 100%;
 }
-
+.map-menu p {
+  font-size: 14px;
+}
 .map-menu .setting {
   font-size: 14px;
   font-family: Avenir-Medium;
 }
-
 .map-menu .settings-label {
   display: inline-block;
   font-family: Avenir-Medium;
   font-size: 14px;
-  color: #AEB3BD;
-  margin: 40px 0 10px 0;
+  margin: 20px 0 10px 0;
 }
-
 .map-menu .settings-footer {
   position: absolute;
   width: 100%;
   bottom: 0px;
   left:0;
-  height: 120px;
+  height: 60px;
 }
-
 .map-menu .settings-help {
-  text-align: center;
   display: block;
   font-family: Avenir-Medium;
   font-size: 14px;
@@ -378,7 +354,85 @@ table tbody td.action-buttons {
   margin: 10px auto;
 }
 
-/* DASHBOARD - DATABOX - Duplicates ------------------------------------ */
+/* dit is the styling voor de toggle buttons, kan weg als we die uiteindelijk niet meer gebruiken
+.tgl {
+  display: none;
+}
+.tgl, .tgl:after,
+.tgl:before, .tgl *,
+.tgl *:after,
+.tgl *:before,
+.tgl + .tgl-btn {
+  box-sizing: border-box;
+}
+.tgl::-moz-selection,
+.tgl:after::-moz-selection,
+.tgl:before::-moz-selection,
+.tgl *::-moz-selection,
+.tgl *:after::-moz-selection,
+.tgl *:before::-moz-selection,
+.tgl + .tgl-btn::-moz-selection {
+  background: none;
+}
+.tgl::selection,
+.tgl:after::selection,
+.tgl:before::selection,
+.tgl *::selection,
+.tgl *:after::selection,
+.tgl *:before::selection,
+.tgl + .tgl-btn::selection {
+  background: none;
+}
+.tgl + .tgl-btn {
+  outline: 0;
+  display: inline-block;
+  width: 2.4em;
+  height: 1.2em;
+  position: relative;
+  padding-bottom: 0;
+  margin-top: 4px;
+  margin-right: 10px;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.tgl + .tgl-btn:after,
+.tgl + .tgl-btn:before {
+  position: relative;
+  display: block;
+  content: "";
+  width: 48%;
+  height: 100%;
+}
+.tgl + .tgl-btn:after {
+  left: 0;
+}
+.tgl + .tgl-btn:before {
+  display: none;
+}
+.tgl:checked + .tgl-btn:after {
+  left: 51%;
+}
+.tgl-light + .tgl-btn {
+  background: #EAEAEA;
+  border-radius: 2em;
+  padding: 2px;
+  transition: all .4s ease;
+}
+.tgl-light + .tgl-btn:after {
+  border-radius: 50%;
+  background: #fff;
+  transition: all .2s ease;
+}
+.tgl-light:checked + .tgl-btn {
+  background: #FF1211;
+}
+*/
+
+/* DUPLICATES BOX ------------------------------------------------------------------------------------------ */
 
 .dpl-row {
   margin-left: -30px;
@@ -389,34 +443,28 @@ table tbody td.action-buttons {
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
-
 .dpl-row:hover {
   background: #f5f5f5;
   cursor: pointer;
 }
-
 .dpl-row div {
   display: inline-block;
-  margin: 10px 0;
+  margin: 5px 0;
 }
-
 .dpl-row .dpl-icon {
   vertical-align: middle;
   margin-right: 10px;
 }
-
 .dpl-row .dpl-icon .material-icons {
   font-size: 17px;
   color: #aaa;
   margin-top: 2px;
 }
-
 .dpl-row .dpl-content {
   font-family: Avenir-Medium;
-  font-size: 16px;
+  font-size: 14px;
   color: #1B253A;
 }
-
 .dpl-row .dpl-extra {
   float:right;
   font-size: 14px;
@@ -424,45 +472,64 @@ table tbody td.action-buttons {
   text-align: right;
 }
 
-/* DASHBOARD - DATABOX - Overview stats ---------------------------------- */
+/* --------------------------------------------------------------------------------------------------------- */
+/* GRAPHS & CHARTS ----------------------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------------- */
 
+/* PIE CHART - Duplicates ---------------------------------------------------------------------------------- */
+
+#dashboard-overview-stats {
+  min-height: 309px;
+}
+#dashboard-overview-stats .databox-link {
+  text-align: left;
+  margin-top: 50px;
+}
 #dashboard-overview-stats p {
-  font-size: 12px;
-  line-height: 14px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 14px;
 }
-
 #dashboard-overview-stats p:last-child {
-  margin-bottom: -6px;
+  margin-bottom: 13px;
 }
-
-#dashboard-overview-stats p span {
-  font-size: 30px;
-  line-height: 16px;
-  font-weight: 800;
-}
-
 #dashboard-overview-stats p .material-icons {
-  color: black;
-  font-size: 19px;
+  font-size: 20px;
   vertical-align: middle;
   margin-right: 5px;
-  margin-top: -14px;
-  font-weight: 700;
+  margin-top: -2px;
+}
+svg#donut-chart {
+  float: right;
+  margin: 0 auto;
+  margin-right: 50px;
+  margin-top: -10px;
+}
+text.inner-circle {
+  font-weight: 600;
+  font-size: 22px;
+}
+.arc:hover {
+  opacity: .8;
+}
+.arc text {
+  font-size: 10px;
+  color: #fff;
+  font-weight: 600;
 }
 
-/* DETAILED VIEWS  ------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------------- */
+/* DETAILED VIEWS ------------------------------------------------------------------------------------------ */
+/* --------------------------------------------------------------------------------------------------------- */
 
 .back-link {
   font-family: Avenir-Medium;
   font-size: 12px;
   color: #FF1211;
 }
-
 .back-link:hover {
   color: #FF1211;
 }
-
 .back-link .material-icons {
   vertical-align: middle;
   font-size: 16px;
@@ -470,23 +537,26 @@ table tbody td.action-buttons {
   margin-left: -5px;
 }
 
-h1 {
-  font-family: Avenir-Medium;
-  font-size: 20px;
-  color: #1B253A;
-  letter-spacing: 0.7px;
-  text-transform: uppercase;
-  margin-top: 5px;
+/* NEIGHBOURHOODS ------------------------------------------------------------------------------------------ */
+
+#neighbourhoods tr:hover td {
+  background: #f3f3f3;
+  cursor: pointer;
 }
 
-h1 .material-icons {
-  font-size: 16px;
-  vertical-align: middle;
-  margin-right: 3px;
-  margin-top: -5px;
-}
+/* DUPLICATES ---------------------------------------------------------------------------------------------- */
 
 .duplicate-menu .action-buttons {
   display: inline-block;
   float: right;
+}
+#duplicates tr .listing-id .material-icons {
+  font-size: 17px;
+  color: #aaa;
+  margin-top: -4px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+#duplicates tr .action-buttons button.btn-secondary {
+  margin-right: 0px;
 }

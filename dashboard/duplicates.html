@@ -26,6 +26,11 @@
   <!-- Sortable tables -->
   <script src="js/sorttable.js"></script>
 
+  <!-- D3 -->
+  <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+
+  <!-- Set view -->
+  <script charset="utf-8"> var view = "duplicates"; </script>
 </head>
 
 <body>
@@ -50,7 +55,10 @@
             </li>
             <hr>
             <li>
-                <a href="#"><i class="material-icons">directions_run</i>Log out</a>
+                <a href="" data-toggle="modal" data-target="#helpModal"><i class="material-icons">help</i>More info</a>
+            </li>
+            <li>
+                <a href="login.html"><i class="material-icons">directions_run</i>Log out</a>
             </li>
         </ul>
     </div>
@@ -60,7 +68,7 @@
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row">
-              <div class="col">
+              <div class="col-sm-6">
                 <div class="databox">
                   <h2>Duplicates</h2>
 
@@ -68,7 +76,7 @@
                     <thead>
                       <tr>
                         <th class="th-sm">
-                          listing ID
+                          score
                           <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
                         </th>
                         <th class="th-sm">
@@ -76,7 +84,7 @@
                           <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
                         </th>
                         <th class="th-sm">
-                          match
+                          listing ID
                           <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
                         </th>
                         <th class="th-sm action-buttons sorttable_nosort">
@@ -90,20 +98,79 @@
 
                 </div>
               </div>
+              <div class="col-sm-6">
+                <div id="dashboard-overview-stats" class="databox">
+                  <h2>Overview</h2>
+
+                  <svg id="donut-chart"></svg>
+                  <p style="margin-top: 40px;">
+                    <i style="color:#e3e3e3" class="material-icons">label</i>
+                    <span id="unresolved"></span> unresolved duplicates
+                  </p>
+                  <p>
+                    <i style="color:#2ecc71" class="material-icons">label</i>
+                    <span id="match"></span> marked as correct match
+                  </p>
+                  <p>
+                    <i style="color:#ff6b6b" class="material-icons">label</i>
+                    <span id="no-match"></span> marked as wrong match
+                  </p>
+                  <p>
+                    <i style="color:#feca57" class="material-icons">label</i>
+                    <span id="unsolvable"></span> marked as unsolvable
+                  </p>
+                  <a class="databox-link" href="#">View archived matches <i class="material-icons">keyboard_arrow_right</i></a>
+                </div>
+
+                <div style="margin-top: 30px;" class="databox">
+                  <h2>Duplicates per neighbourhood</h2>
+
+                  <div id='container'>
+                    <svg id="bar-chart"/>
+                  </div>
+                </div>
+              </div>
             </div>
         </div>
+
+
     </div>
     <!-- /#page-content-wrapper -->
 
   </div>
   <!-- /#wrapper -->
 
+  <!-- Modal -->
+  <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Airbnb dashboard</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Some extra help text here.
+        </div>
+        <div class="modal-footer action-buttons">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS, then custom JS -->
-  <script src="js/jquery-3.1.1.min.js"></script>
+  <!-- jQuery -->
+  <script src="js/jquery-3.1.1.min.js?v=2.0"></script>
+
+  <!-- Bootstrap -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-  <script src="js/scripts.js?v=1.0"></script>
+
+  <!-- Data -->
+  <script type="text/javascript" src="data/duplicates.js"></script>
+
+  <!-- Custom js -->
+  <script src="js/scripts.js"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/styles.css?v=3.0">
+  <link rel="stylesheet" href="css/styles.css?v=6.0">
 
   <!-- Fonts CSS -->
   <link rel="stylesheet" href="fonts/font.css?v=1.0">
@@ -26,7 +26,11 @@
   <!-- Sortable tables -->
   <script src="js/sorttable.js"></script>
 
+  <!-- D3 -->
+  <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
 
+  <!-- Set view -->
+  <script charset="utf-8"> var view = "dashboard"; </script>
 </head>
 
 <body>
@@ -51,11 +55,13 @@
             </li>
             <hr>
             <li>
-                <a href="#"><i class="material-icons">directions_run</i>Log out</a>
+                <a href="" data-toggle="modal" data-target="#helpModal"><i class="material-icons">help</i>More info</a>
+            </li>
+            <li>
+                <a href="login.html"><i class="material-icons">directions_run</i>Log out</a>
             </li>
         </ul>
     </div>
-    <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
@@ -66,13 +72,18 @@
                   <div class="row">
                     <div class="col-sm-8">
                       <div class="databox map-overview">
+
+                        <!--- HIER MOET DE KAART KOMEN -->
                         <iframe src="./map.html"></iframe>
+                        <!--- HIER MOET DE KAART KOMEN -->
+
                       </div>
                     </div>
                     <div class="col-sm-4">
                       <div class="databox map-menu">
                         <h2>Map Controls</h2>
 
+                        <!--
                         <div class="setting">
                           <input class="tgl tgl-light" id="cb1" type="checkbox" checked/>
                           <label class="tgl-btn" for="cb1"></label>
@@ -90,6 +101,9 @@
                           <label class="tgl-btn" for="cb3"></label>
                           Show only recent bookings
                         </div>
+                        -->
+
+                        <p>A quick explanation of the map, blabla. It shows a heatmap for each neighbourhood. Click on the neighbourhood in the map or select from the selectbox for more informaiton.</p>
 
                         <span class="settings-label">
                           Select neigbourhood:
@@ -107,10 +121,8 @@
                         </div>
 
                         <div class="settings-footer">
-                          <span class="settings-help"><i>Click an area on the map for more info</i></span>
-                          <span class="settings-help"><i>or</i></span>
                           <a href="neighbourhoods.html" class="databox-link">
-                           Go to the neighbourhood overview
+                           Go to the neighbourhood overview <i class="material-icons">keyboard_arrow_right</i>
                           </a>
                         </div>
 
@@ -121,35 +133,37 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-4">
+              <div class="col-sm-6">
                 <div id="dashboard-overview-stats" class="databox">
                   <h2>Overview stats</h2>
-                  <p>
-                    <i class="material-icons">filter_none</i>
-                    <span id="stats-total-duplicates">?</span> <br/>duplicates found
+
+                  <svg id="donut-chart"></svg>
+                  <p style="margin-top: 40px;">
+                    <i style="color:#e3e3e3" class="material-icons">label</i>
+                    <span id="unresolved"></span> unresolved duplicates
                   </p>
                   <p>
-                    <i class="material-icons">check</i>
-                    <span id="stats-total-match">?</span> <br/>marked as match
+                    <i style="color:#2ecc71" class="material-icons">label</i>
+                    <span id="match"></span> marked as correct match
                   </p>
                   <p>
-                    <i class="material-icons">close</i>
-                    <span id="stats-total-no-match">?</span> <br/>marked as not a match
+                    <i style="color:#ff6b6b" class="material-icons">label</i>
+                    <span id="no-match"></span> marked as wrong match
                   </p>
                   <p>
-                    <i class="material-icons">block</i>
-                    <span id="stats-total-unsolvable">?</span> <br/>marked as unsolvable
+                    <i style="color:#f1c40f" class="material-icons">label</i>
+                    <span id="unsolvable"></span> marked as unsolvable
                   </p>
                 </div>
               </div>
-              <div class="col-sm-8">
+              <div class="col-sm-6">
                 <div id="dashboard-duplicate-listings" class="databox">
-                  <h2>Top duplicate listings (<span id="total-showing">4</span> of <span id="total-duplicates">?</span>)</h2>
+                  <h2>Top duplicate listings (<span id="total-showing">5</span> of <span id="total-duplicates">?</span>)</h2>
 
                   <div class="rows"></div>
 
                   <a href="duplicates.html" class="databox-link">
-                    Show all duplicate listings
+                    Show all duplicate listings <i class="material-icons">keyboard_arrow_right</i>
                   </a>
 
                 </div>
@@ -157,17 +171,41 @@
             </div>
         </div>
     </div>
-    <!-- /#page-content-wrapper -->
-
   </div>
-  <!-- /#wrapper -->
 
+  <!-- Modal -->
+  <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Airbnb dashboard</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Some extra help text here.
+        </div>
+        <div class="modal-footer action-buttons">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS, then custom JS -->
-  <script src="js/jquery-3.1.1.min.js"></script>
+  <!-- jQuery -->
+  <script src="js/jquery-3.1.1.min.js?v=2.0"></script>
+
+  <!-- Bootstrap -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+  <!-- Data -->
+  <script type="text/javascript" src="data/duplicates.js"></script>
+  <script type="text/javascript" src="data/neighbourhoods.js"></script>
+  <script type="text/javascript" src="data/neighbourhoodsLocations.js"></script>
+
+  <!-- Custom js -->
   <script src="js/scripts.js"></script>
 </body>
 </html>
