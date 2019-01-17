@@ -29,6 +29,17 @@
   <!-- D3 -->
   <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
 
+  <!-- Jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Map includes -->
+  <link rel="stylesheet" href="leaflet/leaflet.css" />
+  <script src="leaflet/leaflet.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/maptheme.css">
+  <!-- map data -->
+  <script src="data/neighbourhoodsLocations.js" type="text/javascript"></script>
+  <script type="text/javascript" src="data/listingsFromCsv.js"></script>
+
   <!-- Set view -->
   <script charset="utf-8"> var view = "neighbourhood-view"; </script>
 </head>
@@ -73,9 +84,105 @@
         <h1 id="neighbourhood-name"><?php echo $_GET["name"]; ?></h1>
         <div class="row">
           <div class="col-sm-8">
-            <div class="databox map-overview">
 
-              <!--- HIER MOET DE KAART KOMEN -->
+            <div id="mapid" class="databox map-overview">
+              <!--- ######################CODE VOOR DE KAART############################################ -->
+              <script>
+                var listings = JSON.parse(listingsFromCsv);
+                var selectedNeighbourhood = getQueryVariable("name");
+
+                function getQueryVariable(variable)
+                {
+                    var query = window.location.search.substring(1);
+                    var vars = query.split("&");
+                    for (var i=0;i<vars.length;i++) {
+                            var pair = vars[i].split("=");
+                            if(pair[0] == variable){return decodeURI(pair[1]);}
+                    }
+                    return(false);
+                }
+                
+                var bounds = getNeighbourhoodBounds(selectedNeighbourhood);
+
+                function getNeighbourhoodBounds(selectedNeighbourhood){
+                  for(key in neighbourhoods.features){
+                    if(neighbourhoods.features[key].properties.neighbourhood === selectedNeighbourhood){
+                      console.log(neighbourhoods.features[key]);
+                      return neighbourhoods.features[key];
+                    }
+                  }
+                  return false;
+                }
+
+                var map = L.map('mapid').setView([52.377, 4.880], 13);
+
+                L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+                  maxZoom: 18,
+                  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+                    '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                    'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                  id: 'mapbox.streets'
+                }).addTo(map);
+
+                //#########################################################
+                // control that shows state info on hover
+                var info = L.control();
+
+                info.onAdd = function (map) {
+                  this._div = L.DomUtil.create('div', 'info');
+                  this.update();
+                  return this._div;
+                };
+
+                info.update = function (props) {
+                  this._div.innerHTML = '<b>Neighbourhood:</b><br/><b>' + selectedNeighbourhood + '</b><br />';
+                };
+
+                info.addTo(map);
+
+                function style(feature) {
+                  return {
+                    weight: 2,
+                    opacity: 1,
+                    color: 'white',
+                    dashArray: '3',
+                    fillOpacity: 0.2,
+                    fillColor: '#80002'
+                  };
+                }
+
+                var geojson;
+                
+                function onEachFeature(feature, layer) {
+                  layer._leaflet_id = feature.properties.neighbourhood;
+
+                  //fit on the selectedNeighbourhood
+                  if(feature.properties.neighbourhood === selectedNeighbourhood){
+                    map.fitBounds(layer.getBounds());
+                  }
+
+                }
+                
+                //get the neighbourhood outline
+                geojson = L.geoJson(neighbourhoods, {
+                  style: style,
+                  onEachFeature: onEachFeature
+                }).addTo(map);
+
+                //pop ups for listings
+                for(key in listings){
+                  if(listings[key].neighbourhood === selectedNeighbourhood){
+                    var listinginfo = listings[key];
+                    L.circle([listinginfo.latitude,listinginfo.longitude], 25).addTo(map).bindPopup("<b>" + key + "</b><br/>" +
+                    "host id: " + listinginfo.host_id + "<br/>" +
+                    "price: " + listinginfo.price + "<br/>" +
+                    "number of reviews: " + listinginfo.number_of_reviews + "<br/>" +
+                    "availability 365: " + listinginfo.availability_365 + "<br/>");
+                  }
+                }
+
+              </script>
+              <!--- ######################CODE VOOR DE KAART############################################ -->
 
             </div>
           </div>
@@ -120,9 +227,6 @@
       </div>
     </div>
   </div>
-
-  <!-- jQuery -->
-  <script src="js/jquery-3.1.1.min.js?v=2.0"></script>
 
   <!-- Bootstrap -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
