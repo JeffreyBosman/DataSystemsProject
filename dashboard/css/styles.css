@@ -560,3 +560,37 @@ text.inner-circle {
 #duplicates tr .action-buttons button.btn-secondary {
   margin-right: 0px;
 }
+
+
+
+
+
+
+.databox {
+  height: 100%;
+}
+
+.duplicate-snapshot {
+  text-align: center;
+}
+
+.duplicate-snapshot h2 {
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.duplicate-snapshot .airbnb-embed-frame {
+  display: inline-block;
+  margin: 0 40px !important;
+}
+
+.duplicate-menu .action-buttons {
+  width: 100%;
+  margin-bottom: 30px;
+}
+.duplicate-menu .action-buttons .btn {
+  float: none;
+  margin: 4px 0;
+  width:100%;
+}
+

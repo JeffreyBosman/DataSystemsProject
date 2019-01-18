@@ -169,7 +169,7 @@ if (view == "dashboard") {
     +'<td class="listing-id"><i class="material-icons">home</i> '+collection_new[i].case_A_id+'</td>'
     +'<td class="listing-id"><i class="material-icons">home</i> '+collection_new[i].case_B_id+'</td>'
     +'<td class="action-buttons">'
-    +'<a href="duplicate-view.html"><button type="button" class="btn btn-secondary"><i class="material-icons">search</i>View report</button></a>'
+    +'<a href="duplicate-view.php?name1='+collection_new[i].case_A_id+'&name2='+collection_new[i].case_B_id+'"><button type="button" class="btn btn-secondary"><i class="material-icons">search</i>View report</button></a>'
     +'</td>'
     +'</tr>').appendTo('#duplicates tbody');
   }

@@ -71,43 +71,40 @@
           <i class="material-icons">keyboard_arrow_left</i>
           Back to duplicates overview
         </a>
-        <h1><i class="material-icons">filter_none</i> ID1 & ID2</h1>
+        <h1><i class="material-icons">filter_none</i> Listings ID's: <span id="duplicate-id-1"><?php echo $_GET["name1"]; ?></span> & <span id="duplicate-id-1"><?php echo $_GET["name2"]; ?></span></h1>
 
         <div class="row">
-          <div class="col-sm-12">
+          <div class="col-sm-3">
             <div class="databox duplicate-menu">
-              Match: <b>X%</b>
-
+              <h2>Actions</h2>
               <div class="action-buttons">
-                <button type="button" class="btn btn-primary">
+                <button type="button" class="btn btn-secondary">
                   <i class="material-icons">check</i>Confirm match
                 </button>
-                <button type="button" class="btn btn-primary">
+                <button type="button" class="btn btn-secondary">
                   <i class="material-icons">close</i>Delete match
                 </button>
-                <button type="button" class="btn btn-primary">
+                <button type="button" class="btn btn-secondary">
                   <i class="material-icons">block</i>Mark as unresolvable
                 </button>
               </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="databox">
+          <div class="col-sm-9">
+            <div class="databox duplicate-menu">
+              <h2>Match overview</h2>
+              Match: <b>X%</b>
               match overview
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-6">
-            <div class="databox">
-              overview 1
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="databox">
-              overview 2
+          <div class="col-sm-12">
+            <div class="databox duplicate-snapshot">
+              <h2>Compare duplicates</h2>
+              <div class="airbnb-embed-frame" data-id="10432232" data-view="home" style="width:450px;height:300px;margin:auto"><a href="https://www.airbnb.com/rooms/10432232?s=51">View On Airbnb</a><a href="https://www.airbnb.com/rooms/10432232?s=51" rel="nofollow">Private Attic Studio/Roofterrace</a><script async="" src="https://www.airbnb.com/embeddable/airbnb_jssdk"></script></div>
+
+              <div class="airbnb-embed-frame" data-id="10432232" data-view="home" style="width:450px;height:300px;margin:auto"><a href="https://www.airbnb.com/rooms/10432232?s=51">View On Airbnb</a><a href="https://www.airbnb.com/rooms/10432232?s=51" rel="nofollow">Private Attic Studio/Roofterrace</a><script async="" src="https://www.airbnb.com/embeddable/airbnb_jssdk"></script></div>
             </div>
           </div>
         </div>
