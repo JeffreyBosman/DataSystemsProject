@@ -22,155 +22,43 @@
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-
-  <!-- Sortable tables -->
-  <script src="js/sorttable.js"></script>
-
-  <!-- D3 -->
-  <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
-
-  <!-- Set view -->
-  <script charset="utf-8"> var view = "dashboard"; </script>
 </head>
 
 <body>
+  <div class="container-fluid">
+    <br/><br/>
+    <div class="row">
+      <div class="col-sm-4">
+      </div>
+      <div class="col-sm-4">
+        <img class="logo" src="img/logo.png" alt="Gemeente Amsterdam logo" style="display:block; margin:0 auto; width: 250px;" />
+        <br/><br/>
+        <div class="databox login">
+          <p>Welcome to the Airbnb dashboard of the Gemeente Amsterdam. Please enter your credentials below to log in. </p>
 
-  <div id="wrapper">
+          <form>
 
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <img class="logo" src="img/logo.png" alt="Gemeente Amsterdam logo" />
-            </li>
-            <hr>
-            <li>
-                <a href="index.html" class="current"><i class="material-icons">dashboard</i>Dashboard</a>
-            </li>
-            <li>
-                <a href="neighbourhoods.html"><i class="material-icons">pin_drop</i>Neighbourhoods</a>
-            </li>
-            <li>
-                <a href="duplicates.html"><i class="material-icons">people</i>Duplicates</a>
-            </li>
-            <hr>
-            <li>
-                <a href="" data-toggle="modal" data-target="#helpModal"><i class="material-icons">help</i>More info</a>
-            </li>
-            <li>
-                <a href="login.html"><i class="material-icons">directions_run</i>Log out</a>
-            </li>
-        </ul>
-    </div>
-
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-              <div class="col">
-                <div class="databox databox-alt">
-                  <div class="row">
-                    <div class="col-sm-8">
-                      <div class="databox map-overview">
-
-                        <!--- HIER MOET DE KAART KOMEN -->
-                        <iframe src="./map.html"></iframe>
-                        <!--- HIER MOET DE KAART KOMEN -->
-
-                      </div>
-                    </div>
-                    <div class="col-sm-4">
-                      <div class="databox map-menu">
-                        <h2>Map Controls</h2>
-
-                        <!--
-                        <div class="setting">
-                          <input class="tgl tgl-light" id="cb1" type="checkbox" checked/>
-                          <label class="tgl-btn" for="cb1"></label>
-                          Hide heatmap
-                        </div>
-
-                         <div class="setting">
-                          <input class="tgl tgl-light" id="cb2" type="checkbox"/>
-                          <label class="tgl-btn" for="cb2"></label>
-                          Show labels
-                        </div>
-
-                        <div class="setting">
-                          <input class="tgl tgl-light" id="cb3" type="checkbox"/>
-                          <label class="tgl-btn" for="cb3"></label>
-                          Show only recent bookings
-                        </div>
-                        -->
-
-                        <p>A quick explanation of the map, blabla. It shows a heatmap for each neighbourhood. Click on the neighbourhood in the map or select from the selectbox for more informaiton.</p>
-
-                        <span class="settings-label">
-                          Select neigbourhood:
-                        </span>
-
-                        <div class="form-group">
-                          <select class="form-control" id="neighbourhoods">
-                            <option>Bijlmer-Centrum</option>
-                            <option>Bijlmer-Oost</option>
-                            <option>Bos en Lommer</option>
-                            <option>Buitenveldert - Zuidas</option>
-                            <option>Centrum-Oost</option>
-                            <option>Centrum-West</option>
-                          </select>
-                        </div>
-
-                        <div class="settings-footer">
-                          <a href="neighbourhoods.html" class="databox-link">
-                           Go to the neighbourhood overview <i class="material-icons">keyboard_arrow_right</i>
-                          </a>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <small id="emailHelp" class="form-text text-muted">PLEASE NOTE: Since this is just a prototype, you can ignore the input fields and just press 'log in' to continue.<br/><br/></small>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
             </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <div id="dashboard-overview-stats" class="databox">
-                  <h2>Overview stats</h2>
-
-                  <svg id="donut-chart"></svg>
-                  <p style="margin-top: 40px;">
-                    <i style="color:#e3e3e3" class="material-icons">label</i>
-                    <span id="unresolved"></span> unresolved duplicates
-                  </p>
-                  <p>
-                    <i style="color:#2ecc71" class="material-icons">label</i>
-                    <span id="match"></span> marked as correct match
-                  </p>
-                  <p>
-                    <i style="color:#ff6b6b" class="material-icons">label</i>
-                    <span id="no-match"></span> marked as wrong match
-                  </p>
-                  <p>
-                    <i style="color:#f1c40f" class="material-icons">label</i>
-                    <span id="unsolvable"></span> marked as unsolvable
-                  </p>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div id="dashboard-duplicate-listings" class="databox">
-                  <h2>Top duplicate listings (<span id="total-showing">5</span> of <span id="total-duplicates">?</span>)</h2>
-
-                  <div class="rows"></div>
-
-                  <a href="duplicates.html" class="databox-link">
-                    Show all duplicate listings <i class="material-icons">keyboard_arrow_right</i>
-                  </a>
-
-                </div>
-              </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
+          </form>
+
+          <div class="action-buttons">
+            <a href="./dashboard.html"><button class="btn btn-primary">Log in</button></a>
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#helpModal">More info</button>
+          </div>
         </div>
+      </div>
+      <div class="col-sm-4">
+      </div>
     </div>
+
   </div>
 
   <!-- Modal -->
@@ -193,19 +81,11 @@
     </div>
   </div>
 
-  <!-- jQuery -->
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS, then custom JS -->
   <script src="js/jquery-3.1.1.min.js?v=2.0"></script>
 
-  <!-- Bootstrap -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-
-  <!-- Data -->
-  <script type="text/javascript" src="data/duplicates.js"></script>
-  <script type="text/javascript" src="data/neighbourhoods.js"></script>
-  <script type="text/javascript" src="data/neighbourhoodsLocations.js"></script>
-
-  <!-- Custom js -->
-  <script src="js/scripts.js"></script>
 </body>
 </html>

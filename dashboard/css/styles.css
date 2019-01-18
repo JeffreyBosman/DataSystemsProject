@@ -4,10 +4,6 @@
 
 * {
 
-  -webkit-transition: all 0.2s ease;
-  -moz-transition: all 0.2s ease;
-  -o-transition: all 0.2s ease;
-  transition: all 0.2s ease;
 }
 body {
   font-family: Avenir, sans-serif;
@@ -21,23 +17,61 @@ body {
     vertical-align: middle;
 }
 
+a {
+  color: #FF0000;
+}
+
+a:hover {
+  color: #FF0000;
+}
+
+
 /* --------------------------------------------------------------------------------------------------------- */
 /* HEADING STYLES ------------------------------------------------------------------------------------------ */
 /* --------------------------------------------------------------------------------------------------------- */
 
 h1 {
   font-family: Avenir-Medium;
-  font-size: 20px;
-  color: #1B253A;
+  font-size: 24px;
+  color: #888;
   letter-spacing: 0.7px;
   text-transform: uppercase;
-  margin-top: 5px;
+  margin-top: 3px;
 }
 h1 .material-icons {
-  font-size: 16px;
+  font-size: 18px;
   vertical-align: middle;
+  color: #888;
   margin-right: 3px;
   margin-top: -5px;
+  margin-left: 2px;
+}
+h1 #duplicate-id-1,
+h1 #duplicate-id-2,
+h1 #neighbourhood-name,
+h1 .dark {
+  color: black;
+}
+h2 {
+  font-family: Avenir-Medium;
+  font-size: 15px;
+  color: #AEB3BD;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+h2 a {
+  color: #888;
+}
+h2 a:hover {
+  color: #666;
+}
+h2 .material-icons {
+  font-size: 18px;
+  vertical-align: middle;
+  margin-right: 3px;
+  margin-top: -4px;
 }
 
 /* --------------------------------------------------------------------------------------------------------- */
@@ -49,6 +83,7 @@ h1 .material-icons {
   color: white;
   background: #FF0707;
   border: 1px solid #FF0707;
+  font-weight: 500;
 }
 .action-buttons button.btn-secondary {
   margin-right: 6px;
@@ -88,15 +123,15 @@ table.dataTable thead .sorting_desc_disabled:before {
   bottom: .5em;
 }
 .table thead th {
-  opacity: 0.6;
   font-family: Avenir-Medium;
   font-weight: 400;
   font-size: 16px;
-  color: #94979B;
+  color: black;
   padding-top: 10px;
   padding-bottom: 10px;
   border-top: 0px;
   border-bottom: 1px solid #dee2e6;
+  opacity: 0.3
 }
 .table tbody td {
   padding-top: 16px;
@@ -124,7 +159,7 @@ table.dataTable thead .sorting_desc_disabled:before {
 }
 table tbody td.risk-label .material-icons,
 table tbody td.duplicate-label .material-icons {
-  font-size: 14px;
+  font-size: 16px;
   margin-right:10px;
 }
 table tbody td.duplicate-label .material-icons {
@@ -248,15 +283,6 @@ table tbody td.action-buttons {
   border-radius: 4px;
   box-shadow: 0 0 5px 0 rgba(232,232,232,0.53);
 }
-.databox h2 {
-  font-family: Avenir-Medium;
-  font-size: 15px;
-  color: #AEB3BD;
-  letter-spacing: 0.7px;
-  text-transform: uppercase;
-  margin-bottom: 30px;
-  letter-spacing: 1px;
-}
 .databox .databox-link {
   text-align: center;
   font-size: 14px;
@@ -354,83 +380,68 @@ table tbody td.action-buttons {
   margin: 10px auto;
 }
 
-/* dit is the styling voor de toggle buttons, kan weg als we die uiteindelijk niet meer gebruiken
-.tgl {
-  display: none;
+/* LEAFLET MAP ------------------------------------------------------------------------------------------ */
+
+.leaflet-popup-content-wrapper {
+  padding: 6px 4px;
+  border-radius: 2px;
 }
-.tgl, .tgl:after,
-.tgl:before, .tgl *,
-.tgl *:after,
-.tgl *:before,
-.tgl + .tgl-btn {
-  box-sizing: border-box;
+
+.leaflet-popup-content h2 {
+  font-size: 12px;
+  margin-bottom: 10px;
 }
-.tgl::-moz-selection,
-.tgl:after::-moz-selection,
-.tgl:before::-moz-selection,
-.tgl *::-moz-selection,
-.tgl *:after::-moz-selection,
-.tgl *:before::-moz-selection,
-.tgl + .tgl-btn::-moz-selection {
-  background: none;
+
+.leaflet-popup-content p {
+  margin: 12px 0;
+  font-size: 13px;
 }
-.tgl::selection,
-.tgl:after::selection,
-.tgl:before::selection,
-.tgl *::selection,
-.tgl *:after::selection,
-.tgl *:before::selection,
-.tgl + .tgl-btn::selection {
-  background: none;
-}
-.tgl + .tgl-btn {
-  outline: 0;
-  display: inline-block;
-  width: 2.4em;
-  height: 1.2em;
-  position: relative;
-  padding-bottom: 0;
-  margin-top: 4px;
-  margin-right: 10px;
+
+.leaflet-popup-content p .material-icons {
+  font-size: 16px;
+  color: #94979B;
   vertical-align: middle;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  margin-top: -4px;
+  margin-right: 8px;
 }
-.tgl + .tgl-btn:after,
-.tgl + .tgl-btn:before {
-  position: relative;
+
+.leaflet-popup-content p.second-p {
+  margin-top: -10px;
+  font-size: 12px;
+  color: #bbb;
+}
+
+.leaflet-popup-content p.second-p .material-icons {
+  color: white;
+}
+
+.leaflet-popup-content a {
+  color: #FF0707 !important;
+  margin-top: 20px !important;
+  margin-bottom: 15px !important;
   display: block;
-  content: "";
-  width: 48%;
-  height: 100%;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
 }
-.tgl + .tgl-btn:after {
-  left: 0;
+
+.leaflet-popup-content a:hover {
+  color: #FF0707 !important;
 }
-.tgl + .tgl-btn:before {
-  display: none;
+
+.leaflet-container a.leaflet-popup-close-button {
+  top: 17px;
+  right: 17px;
 }
-.tgl:checked + .tgl-btn:after {
-  left: 51%;
+
+.info.leaflet-control {
+  padding: 14px;
+  border-radius: 2px;
 }
-.tgl-light + .tgl-btn {
-  background: #EAEAEA;
-  border-radius: 2em;
-  padding: 2px;
-  transition: all .4s ease;
+
+.info.leaflet-control p {
+  margin: 3px 0;
 }
-.tgl-light + .tgl-btn:after {
-  border-radius: 50%;
-  background: #fff;
-  transition: all .2s ease;
-}
-.tgl-light:checked + .tgl-btn {
-  background: #FF1211;
-}
-*/
 
 /* DUPLICATES BOX ------------------------------------------------------------------------------------------ */
 
@@ -479,11 +490,10 @@ table tbody td.action-buttons {
 /* PIE CHART - Duplicates ---------------------------------------------------------------------------------- */
 
 #dashboard-overview-stats {
-  min-height: 309px;
+  min-height: 270px;
 }
 #dashboard-overview-stats .databox-link {
-  text-align: left;
-  margin-top: 50px;
+  margin-top: 60px;
 }
 #dashboard-overview-stats p {
   margin-bottom: 10px;
@@ -500,14 +510,14 @@ table tbody td.action-buttons {
   margin-top: -2px;
 }
 svg#donut-chart {
-  float: right;
+  float: left;
   margin: 0 auto;
-  margin-right: 50px;
-  margin-top: -10px;
+  margin-right: 30px;
+  margin-top: -20px;
 }
 text.inner-circle {
-  font-weight: 600;
-  font-size: 22px;
+  font-weight: 500;
+  font-size: 32px;
 }
 .arc:hover {
   opacity: .8;
@@ -525,16 +535,18 @@ text.inner-circle {
 .back-link {
   font-family: Avenir-Medium;
   font-size: 12px;
-  color: #FF1211;
+  color: #AEB3BD;
+  margin-top: 35px;
+  display: inline-block;
 }
 .back-link:hover {
-  color: #FF1211;
+  color: #888;
+  text-decoration: none;
 }
 .back-link .material-icons {
   vertical-align: middle;
   font-size: 16px;
   margin-top: -2px;
-  margin-left: -5px;
 }
 
 /* NEIGHBOURHOODS ------------------------------------------------------------------------------------------ */
@@ -547,8 +559,9 @@ text.inner-circle {
 /* DUPLICATES ---------------------------------------------------------------------------------------------- */
 
 .duplicate-menu .action-buttons {
-  display: inline-block;
-  float: right;
+  display: block;
+  width: 100%;
+  margin: -10px 0 0 0;
 }
 #duplicates tr .listing-id .material-icons {
   font-size: 17px;
@@ -566,31 +579,33 @@ text.inner-circle {
 
 
 
-.databox {
-  height: 100%;
-}
-
-.duplicate-snapshot {
-  text-align: center;
-}
-
 .duplicate-snapshot h2 {
-  text-align: left;
   margin-bottom: 0;
 }
 
 .duplicate-snapshot .airbnb-embed-frame {
   display: inline-block;
-  margin: 0 40px !important;
+  vertical-align: top;
+  margin-left: -5px;
 }
 
-.duplicate-menu .action-buttons {
-  width: 100%;
-  margin-bottom: 30px;
-}
 .duplicate-menu .action-buttons .btn {
   float: none;
   margin: 4px 0;
   width:100%;
 }
+
+.pie-graph-big-circle{
+  fill: #e1e1e1;
+}
+
+.pie-graph-small-circle{
+  fill: #ffffff;
+}
+.dupl-donut {
+  font-weight: 400;
+  display: inline-block;
+  margin: 0 20px 0 5px;
+}
+
 

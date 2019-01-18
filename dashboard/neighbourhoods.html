@@ -27,7 +27,7 @@
   <script src="js/sorttable.js"></script>
 
   <!-- D3 -->
-  <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+  <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
   <!-- Set view -->
   <script charset="utf-8"> var view = "neighbourhoods"; </script>
@@ -45,7 +45,7 @@
             </li>
             <hr>
             <li>
-                <a href="index.html"><i class="material-icons">dashboard</i>Dashboard</a>
+                <a href="dashboard.html"><i class="material-icons">dashboard</i>Dashboard</a>
             </li>
             <li>
                 <a href="neighbourhoods.html" class="current"><i class="material-icons">pin_drop</i>Neighbourhoods</a>
@@ -58,7 +58,7 @@
                 <a href="" data-toggle="modal" data-target="#helpModal"><i class="material-icons">help</i>More info</a>
             </li>
             <li>
-                <a href="login.html"><i class="material-icons">directions_run</i>Log out</a>
+                <a href="index.html"><i class="material-icons">directions_run</i>Log out</a>
             </li>
         </ul>
     </div>
@@ -69,7 +69,7 @@
             <div class="row">
               <div class="col">
                 <div class="databox">
-                  <h2>Neighbourhoods</h2>
+                  <h2>Neighbourhoods <a href="" data-toggle="modal" data-target="#neighbourhoodsModal"><i class="material-icons">info</i></a></h2>
 
                   <table id="neighbourhoods" class="table table-sm table-big sortable" cellspacing="0" width="100%">
                     <thead>
@@ -79,7 +79,7 @@
                           <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
                         </th>
                         <th class="th-sm">
-                          name
+                          neighbourhood
                           <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
                         </th>
                         <th class="th-sm">
@@ -91,27 +91,19 @@
                           <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
                         </th>
                         <th class="th-sm">
-                          listings/ha
-                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
-                        </th>
-                        <th class="th-sm">
                           price/night
                           <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
                         </th>
                         <th class="th-sm">
-                          high availability
+                          % high availability
                           <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
                         </th>
                         <th class="th-sm">
-                          multi-listings
+                          % multiple listings
                           <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
                         </th>
                         <th class="th-sm">
-                          duplicates
-                          <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
-                        </th>
-                        <th class="th-sm">
-                          risk ranking
+                          # duplicates
                           <span class="base-sort"><i class="material-icons"> unfold_more </i></span>
                         </th>
                       </tr>
@@ -146,6 +138,25 @@
     </div>
   </div>
 
+  <div class="modal fade" id="neighbourhoodsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Which data is shown in the neighbourhoods overview?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Some extra help text here.
+        </div>
+        <div class="modal-footer action-buttons">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- jQuery -->
   <script src="js/jquery-3.1.1.min.js?v=2.0"></script>
 
@@ -154,7 +165,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
   <!-- Data -->
-  <script type="text/javascript" src="data/neighbourhoods.js"></script>
+  <script type="text/javascript" src="data/neighbourhoodsInfo.js"></script>
 
   <!-- Custom js -->
   <script src="js/scripts.js"></script>

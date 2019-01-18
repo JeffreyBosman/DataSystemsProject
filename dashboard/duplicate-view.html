@@ -1,0 +1,212 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Gemeente Amsterdam | Airbnb Dashboard</title>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css?v=2.0">
+
+  <!-- Fonts CSS -->
+  <link rel="stylesheet" href="fonts/font.css?v=1.0">
+
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+  <!-- Sortable tables -->
+  <script src="js/sorttable.js"></script>
+
+  <!-- D3 -->
+  <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+  <!-- Set view -->
+  <script charset="utf-8"> var view = "duplicate-view"; </script>
+  <!-- Set view -->
+  <script charset="utf-8">
+    var view = "duplicate-view";
+
+    function getQueryVariable(variable)
+    {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+                var pair = vars[i].split("=");
+                if(pair[0] == variable){return decodeURI(pair[1]);}
+        }
+        return(false);
+    }
+
+    var duplicateId = getQueryVariable("ID");
+  </script>
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <img class="logo" src="img/logo.png" alt="Gemeente Amsterdam logo" />
+            </li>
+            <hr>
+            <li>
+                <a href="dashboard.html"><i class="material-icons">dashboard</i>Dashboard</a>
+            </li>
+            <li>
+                <a href="neighbourhoods.html"><i class="material-icons">pin_drop</i>Neighbourhoods</a>
+            </li>
+            <li>
+                <a href="duplicates.html" class="current"><i class="material-icons">people</i>Duplicates</a>
+            </li>
+            <hr>
+            <li>
+                <a href="" data-toggle="modal" data-target="#helpModal"><i class="material-icons">help</i>More info</a>
+            </li>
+            <li>
+                <a href="index.html"><i class="material-icons">directions_run</i>Log out</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+        <a class="back-link" href="./duplicates.html">
+          <i class="material-icons">keyboard_arrow_left</i>
+          Go back to duplicates overview
+        </a>
+        <h1>&nbsp;ID <span id="duplicate-id-1"></span> <span class="dark">&</span> ID <span id="duplicate-id-2"></span></h1>
+
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="databox duplicate-menu">
+              <h2 style="margin: 0 0 25px;;">Status: <b><span id="status"></span></b> <a href="" data-toggle="modal" data-target="#statusModal"><i class="material-icons">info</i></a></h2>
+              <div class="action-buttons">
+                <button type="button" class="btn btn-secondary">
+                  <i class="material-icons">check</i>Confirm match
+                </button>
+                <button type="button" class="btn btn-secondary">
+                  <i class="material-icons">close</i>Delete match
+                </button>
+                <button type="button" class="btn btn-secondary">
+                  <i class="material-icons">block</i>Mark as unresolvable
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-9">
+            <div class="databox duplicate-menu">
+              <h2>Details <a href="" data-toggle="modal" data-target="#duplicateModal"><i class="material-icons">info</i></a></h2>
+              <div class="dupl-donut-wrapper">
+                <div class="dupl-donut" id="donut-chart-score"></div>
+                <div class="dupl-donut" id="donut-chart-name"></div>
+                <div class="dupl-donut" id="donut-chart-description"></div>
+                <div class="dupl-donut" id="donut-chart-price"></div>
+                <div class="dupl-donut" id="donut-chart-attributes"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="databox duplicate-snapshot">
+              <h2>Comparison</h2>
+
+              <div class="airbnb-embed-frame" id="airbnb-embed-frame-1" data-id="" data-view="home" style="width:450px;height:300px;margin:auto"><a id="airbnb-embed-frame-1-link-1" href="#"></a><a id="airbnb-embed-frame-1-link-2" href="#" rel="nofollow"></a><script async="" src="https://www.airbnb.com/embeddable/airbnb_jssdk"></script></div>
+
+               <div class="airbnb-embed-frame" id="airbnb-embed-frame-2" data-id="" data-view="home" style="width:450px;height:300px;margin:auto"><a id="airbnb-embed-frame-2-link-1" href="#"></a><a id="airbnb-embed-frame-2-link-2" href="#" rel="nofollow"></a><script async="" src="https://www.airbnb.com/embeddable/airbnb_jssdk"></script></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Airbnb dashboard</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Some extra help text here.
+        </div>
+        <div class="modal-footer action-buttons">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="duplicateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">How are the duplicate scores computed?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Some extra help text here.
+        </div>
+        <div class="modal-footer action-buttons">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">What does the status of a duplicate mean?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Some extra help text here.
+        </div>
+        <div class="modal-footer action-buttons">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="js/jquery-3.1.1.min.js?v=2.0"></script>
+
+  <!-- Bootstrap -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+  <!-- Data -->
+  <script type="text/javascript" src="data/duplicates.js"></script>
+
+  <!-- Custom js -->
+  <script src="js/scripts.js"></script>
+</body>
+</html>
