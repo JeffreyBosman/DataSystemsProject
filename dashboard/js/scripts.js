@@ -13,7 +13,7 @@ var donutChart;
    percentageTextSize = '22px';
 
   // This is the scale to avoid using gradiant for the angles.
-  var rScale = d3.scale.linear().domain([0, 100]).range([0, 2 * Math.PI]);
+
 
   // Here we use the helper function of d3 to draw arcs easier
   var arc = d3.svg.arc()
@@ -35,6 +35,7 @@ var donutChart;
       var svg = d3.select(container)
         .append('svg');
 
+      var rScale = initScale(data);
       createBigCircle(svg);
       var vis = createChartContainer(svg, data);
       drawChartArcs(vis, data);
@@ -43,6 +44,11 @@ var donutChart;
 
     }
   };
+
+  // Here we give dimensions to the svg and create a g container
+  function initScale(data) {
+    return d3.scale.linear().domain([0, 100]).range([0, 2 * Math.PI]);
+  }
 
   // Here we create the big circle (the outer one)
   function createBigCircle(svg) {
@@ -119,7 +125,7 @@ var donutChart;
       .attr('text-anchor', 'middle')
       .attr('y', '18px')
       .text(function(d) {
-        return d.value + "%";
+        return d.valueText + d.after;
       })
       .transition()
       .attr('font-size', percentageTextSize)
@@ -164,17 +170,17 @@ if (typeof duplicates !== 'undefined') {
     // Generate donut chart
     var total_duplicates = duplicates.length;
     var total_new = duplicates.filter(function(x) { return x.status == 'Undifined'; }).length;
-    var total_match = duplicates.filter(function(x) { return x.status == 'match'; }).length;
-    var total_no_match = duplicates.filter(function(x) { return x.status == 'no-match'; }).length;
+    var total_match = duplicates.filter(function(x) { return x.status == 'correct'; }).length;
+    var total_no_match = duplicates.filter(function(x) { return x.status == 'incorrect'; }).length;
     var total_unsolvable = duplicates.filter(function(x) { return x.status == 'unsolvable'; }).length;
 
     // Seed data to populate the donut pie chart
     var duplicatesAggr = [{
-      "label": "correct match",
+      "label": "correct",
       "value": total_match.toString(),
       "color": "#2ecc71"
     }, {
-      "label": "wrong match",
+      "label": "incorrect",
       "value": total_no_match.toString(),
       "color": "#ff6b6b"
     }, {
@@ -340,12 +346,19 @@ if (view == "dashboard") {
         $('#status').html('<span>'+duplicates[i].status+'</span>');
       }
 
-      donutChart.draw('#donut-chart-score', [{value: (duplicates[i].match_score*100).toPrecision(3), text: 'total score', color: '#ff0000', middleText: 'TARGET'}] );
-      donutChart.draw('#donut-chart-name', [{value: (duplicates[i].feature_name*100).toPrecision(3), text: 'name', color: '#aaa', middleText: 'TARGET'}] );
-      donutChart.draw('#donut-chart-description', [{value: (duplicates[i].feature_description*10*10).toPrecision(3), text: 'description', color: '#aaa', middleText: 'TARGET'}] );
-      donutChart.draw('#donut-chart-price', [{value: (duplicates[i].feature_name*100).toPrecision(3), text: 'price', color: '#aaa', middleText: 'TARGET'}] );
-      donutChart.draw('#donut-chart-attributes', [{value: (duplicates[i].feature_listing_attributes*100).toPrecision(3), text: 'amenities', color: '#aaa', middleText: 'TARGET'}] );
-      donutChart.draw('#donut-chart-location', [{value: (duplicates[i].feature_location*100).toPrecision(3), text: 'location', color: '#aaa', middleText: 'TARGET'}] )
+      donutChart.draw('#donut-chart-score', [{value: (duplicates[i].match_score*100).toPrecision(3), valueText: (duplicates[i].match_score*100).toPrecision(3), text: 'total score', color: '#333', middleText: 'TARGET', after:'%'}] );
+      donutChart.draw('#donut-chart-name', [{value: (duplicates[i].feature_name*100).toPrecision(3), valueText: (duplicates[i].feature_name*100).toPrecision(3), text: 'name', color: '#aaa', middleText: 'TARGET', after:'%'}] );
+      donutChart.draw('#donut-chart-description', [{value: (duplicates[i].feature_description*10*10).toPrecision(3), valueText: (duplicates[i].feature_description*10*10).toPrecision(3), text: 'description', color: '#aaa', middleText: 'TARGET', after:'%'}] );
+      donutChart.draw('#donut-chart-price', [{value: (duplicates[i].feature_name*100).toPrecision(3), valueText: (duplicates[i].feature_name*100).toPrecision(3), text: 'price', color: '#aaa', middleText: 'TARGET', after:'%'}] );
+      donutChart.draw('#donut-chart-attributes', [{value: (duplicates[i].feature_listing_attributes*100).toPrecision(3), valueText: (duplicates[i].feature_listing_attributes*100).toPrecision(3), text: 'amenities', color: '#aaa', middleText: 'TARGET', after:'%'}] );
+      donutChart.draw('#donut-chart-location', [{value: (duplicates[i].feature_location*100).toPrecision(3), valueText: (duplicates[i].feature_location*100).toPrecision(3), text: 'location', color: '#aaa', middleText: 'TARGET', after:'%'}] )
+
+      var compDays = listings[id1]['est_bookings_2018']+listings[id2]['est_bookings_2018'];
+      if (compDays <= 30) {
+        donutChart.draw('#donut-chart-days', [{value: (compDays/365*100), valueText: compDays, text: 'nights/year', color: '#39CA74', middleText: 'TARGET', after:''}] )
+      } else {
+        donutChart.draw('#donut-chart-days', [{value: (compDays/365*100), valueText: compDays, text: 'nights/year', color: '#FF0000', middleText: 'TARGET', after:''}] )
+      }
     }
   }
 
@@ -363,8 +376,21 @@ if (view == "dashboard") {
 
     var selectedNeighbourhood = nbh.name
 
+    var rank = parseInt(nbh.risk_rank)
+    if (rank <= 5) {
+      var riskColor = '#e74c3c';
+    } else if ((rank > 5) & (rank <= 15)) {
+      var riskColor = '#f1c40f';
+    } else {
+      var riskColor = '#2ecc71';
+    }
+
+    if (rank < 10) {
+      var rank = '0'+rank;
+    }
+
     $('<tr class="clickable-row" data-href="neighbourhood-view.html?name='+selectedNeighbourhood+'">'
-      +'<td class="risk-label"><span id="sort"></span><i class="material-icons"> fiber_manual_record </i></td>'
+      +'<td class="risk-label"><span id="sort">'+ rank +'</span><i class="material-icons" style="color:'+ riskColor +';"> fiber_manual_record </i></td>'
       +'<td><span style="font-weight: 500;">'+nbh.name+'</span></td>'
       +'<td>'+nbh.accounts+'</td>'
       +'<td>'+nbh.listings+'</td>'
@@ -373,17 +399,8 @@ if (view == "dashboard") {
       +'<td class="perc">'+percentage_host_with_multiple_listings+'</td>'
       +'<td>'+duplicates+'</td>'
       +'</tr>').appendTo('#neighbourhoods tbody');
-  }
 
-  // Random colors for labels table
-  var colors = {0:'#e74c3c', 1:'#f1c40f', 2:'#2ecc71'};
-  var elems = document.getElementsByClassName('risk-label');
 
-  for (i=0; i<elems.length; i++) {
-    var random_key = Math.floor(Math.random() * Object.keys(colors).length)
-    var random_color = colors[random_key];
-    elems[i].style.color = random_color;
-    elems[i].firstElementChild.innerHTML = random_key;
   }
 
 // INSERT DATA FOR SINGLE NEIGHBOURHOOD VIEW ----------------------------------------------------------------------------
@@ -391,9 +408,6 @@ if (view == "dashboard") {
   console.log(neighbourhoodsInfo)
   for (var i = 0; i < neighbourhoodsInfo.length; i++) {
     var nbh = neighbourhoodsInfo[i];
-    var listings_per_ha = Math.round( nbh.listings_per_ha * 10 ) / 10;
-    var avg_price_night = Math.round( nbh.avg_price_night );
-    var percentage_high_availability = Math.round( nbh.percentage_high_availability * 10 ) / 10;
     var percentage_host_with_multiple_listings = Math.round( nbh.percentage_host_with_multiple_listings * 10 ) / 10;
     var duplicates = Math.round( nbh.duplicates * 10 ) / 10;
     var risk_rank = Math.round( nbh.risk_rank );
@@ -402,10 +416,10 @@ if (view == "dashboard") {
       document.getElementById('neighbourhood-name').innerHTML = selectedNeighbourhood;
       document.getElementById('dupl-no-accounts').innerHTML = nbh.accounts;
       document.getElementById('dupl-no-listings').innerHTML = nbh.listings;
-      document.getElementById('dupl-listings-ha').innerHTML = listings_per_ha;
-      document.getElementById('dupl-price').innerHTML = avg_price_night;
-      document.getElementById('dupl-high-avail').innerHTML = percentage_high_availability;
-      document.getElementById('dupl-multi-list').innerHTML = percentage_host_with_multiple_listings;
+      document.getElementById('dupl-price').innerHTML = Math.round( nbh.avg_price_night );
+      document.getElementById('dupl-high-avail').innerHTML = Math.round( nbh.percentage_high_availability * 10 ) / 10;
+      document.getElementById('dupl-multi-list').innerHTML = Math.round( nbh.percentage_host_with_multiple_listings * 10 ) / 10;
+      document.getElementById('dupl-duplicates').innerHTML = Math.round( nbh.duplicates );
     }
   }
 }
@@ -419,5 +433,7 @@ jQuery(document).ready(function($) {
     $(".clickable-row").click(function() {
         window.location = $(this).data("href");
     });
+
 });
+
 

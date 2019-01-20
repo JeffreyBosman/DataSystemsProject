@@ -137,13 +137,15 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Airbnb dashboard</h5>
+          <h5 class="modal-title" id="exampleModalLabel">General info</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          Some extra help text here.
+          <p>Welcome to this dashboard. By analyzing publicly available information about the Airbnb's listings in Amsterdam, this dashboard supports the investigation of fraudulent Airbnb acitivy in the city of Amsterdam.</p>
+          <p>The goal of this dashboard is to aid the investigation of duplicate listings and support policy making regarding Airbnb.</p>
+          <p>The sidebar on the left contains the main menu. The <b>'Dashboard'</b> shows a general overview of the data and all neighbourhoods. Furthermore, the <b>'Neighbourhoods'</b> view focuses on the key statistics per neighbourhood, which can support policy making. Lastly, the <b>'Duplicates'</b> view, focuses on the duplicate listings found in Amsterdam. This view enables the user to evaluate and assign duplicates. By doing this, listings that violate regulations can be identified.</p>
         </div>
         <div class="modal-footer action-buttons">
           <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -162,7 +164,16 @@
           </button>
         </div>
         <div class="modal-body">
-          Some extra help text here.
+          <p>Each duplicate has a status, this can either be:</p>
+          <ul>
+            <li><b>Unresolved</b>: The duplicate is new and not yet assessed by a human.</li>
+            <li><b>Correct match</b>: Both listings concern the same property and the estimated number of bookings should be added together.</li>
+            <li><b>Wrong match</b>: Despite the high matching score, the listings concern a different property and are, therefore, not duplicate.</li>
+            <li><b>Unsolvable</b>: It is not clear whether these two listings concern the same property, therefore, this duplicate is unresolvable.</li>
+          </ul>
+
+          <p>The status of a duplicate can be controlled by the user and this feedback is used as input to improve the algorithm that identifies and assesses the duplicates (using a semi-supervised machine learning algorithm).</p>
+
         </div>
         <div class="modal-footer action-buttons">
           <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>

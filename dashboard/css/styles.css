@@ -385,6 +385,11 @@ table tbody td.action-buttons {
 .leaflet-popup-content-wrapper {
   padding: 6px 4px;
   border-radius: 2px;
+  max-width: 290px;
+}
+
+.leaflet-popup-content {
+  width: 230px;
 }
 
 .leaflet-popup-content h2 {
@@ -409,6 +414,7 @@ table tbody td.action-buttons {
   margin-top: -10px;
   font-size: 12px;
   color: #bbb;
+  margin-left: 28px;
 }
 
 .leaflet-popup-content p.second-p .material-icons {
@@ -556,6 +562,22 @@ text.inner-circle {
   cursor: pointer;
 }
 
+.overview-data {
+  margin: -10px 0 40px 0;
+}
+
+.overview-data p {
+  margin: 16px 0;
+}
+
+.overview-data .material-icons {
+  font-size: 20px;
+  color: #aaa;
+  margin-top: -4px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
 /* DUPLICATES ---------------------------------------------------------------------------------------------- */
 
 .duplicate-menu .action-buttons {
@@ -573,6 +595,26 @@ text.inner-circle {
 #duplicates tr .action-buttons button.btn-secondary {
   margin-right: 0px;
 }
+
+#donut-chart-days {
+  margin-right: 30px;
+}
+#donut-chart-name,
+#donut-chart-description,
+#donut-chart-price,
+#donut-chart-attributes {
+  opacity: 0.7;
+  transition: 0.3s all ease-in;
+  zoom: 0.8;
+}
+#donut-chart-name:hover,
+#donut-chart-description:hover,
+#donut-chart-price:hover,
+#donut-chart-attributes:hover {
+  opacity: 1;
+}
+
+
 
 
 
@@ -605,7 +647,19 @@ text.inner-circle {
 .dupl-donut {
   font-weight: 400;
   display: inline-block;
-  margin: 0 20px 0 5px;
+  margin: 0 10px 0 5px;
 }
 
-
+#duplicate-status-update {
+  visibility: hidden;
+  height: 0px;
+  font-size: 12px;
+  transition: 0.1s all ease-in;
+  color: #FF0707;
+  line-height: 16px;
+  margin: -14px 0 20px;
+}
+#duplicate-status-update.active {
+  visibility: visible;
+  height: 30px;
+}

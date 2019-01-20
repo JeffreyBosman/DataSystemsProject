@@ -102,7 +102,6 @@
             <div id="mapid" class="databox map-overview">
               <!--- ######################CODE VOOR DE KAART############################################ -->
               <script>
-                var listings = JSON.parse(listingsFromCsv);
 
                 var bounds = getNeighbourhoodBounds(selectedNeighbourhood);
 
@@ -181,10 +180,15 @@
                     fillOpacity: 0.4}).addTo(map).bindPopup(
                     "<h2>Overview</h2>" +
                     "<p><i class='material-icons'>pin_drop</i> <b>ID: " + key + "</b></p>" +
-                    "<p class='second-p'><i class='material-icons'>keyboard_arrow_right</i> " + listinginfo.room_type + "</p>" +
-                    "<p><i class='material-icons'>person</i> Host ID: " + listinginfo.host_id + "</p>" +
-                    "<p><i class='material-icons'>info</i> &euro;" + listinginfo.price + " per night</b></p>" +
-                    "<p class='second-p'><i class='material-icons'>keyboard_arrow_right</i> Available " + listinginfo.availability_365 + " days/year (" + Math.round( (listinginfo.availability_365/365)*100 * 10 ) / 10 + "%)</p>" +
+                    "<p class='second-p'><i>" + listinginfo.name + "</i></p>" +
+                    "<p class='second-p'>" + listinginfo.room_type + "</p>" +
+                    "<p><i class='material-icons'>person</i> <b>" + listinginfo.host_name + "</b> (" + listinginfo.calculated_host_listings_count + " other listing(s))</p>" +
+                    "<p class='second-p'>ID: " + listinginfo.host_id + "</p>" +
+                    "<p><i class='material-icons'>account_balance_wallet</i> <b>&euro;" + listinginfo.est_monthly_income_2018 + " monthly income </b>(est.)</p>" +
+                    "<p class='second-p'> &euro;" + listinginfo.price + " price/night</p>" +
+                    "<p><i class='material-icons'>info</i> <b><span id='no-bookings'>" + listinginfo.est_bookings_2018 + "</span> nights booked in 2018</b> (est.)</p>" +
+                    "<p class='second-p'> Available " + listinginfo.availability_365 + " days/year (" + Math.round( (listinginfo.availability_365/365)*100 * 10 ) / 10 + "%)" +
+                    "<p class='second-p'> Last booking: " + listinginfo.last_review + "</p>" +
                     "<a href='https://www.airbnb.com/rooms/" + key + " target='_blank'>Open on Airbnb</a>");
                   }
                 }
@@ -197,18 +201,15 @@
             <div class="databox map-menu">
               <h2>Overview</h2>
 
-              <p><span id="dupl-no-accounts"></span> accounts</p>
-              <p><span id="dupl-no-listings"></span> listings</p>
-              <p><span id="dupl-listings-ha"></span> listings per ha</p>
-              <p>&euro;<span id="dupl-price"></span> per night on average</p>
-              <p><span id="dupl-high-avail"></span>% listings with high availability</p>
-              <p><span id="dupl-multi-list"></span>% hosts have multi-listings</p>
-
-              <br/>
-              <h2>Top hosts in this area</h2>
-
-              <p>some hosts here</p>
-
+              <div class="overview-data">
+                <p><i class='material-icons'>person</i> <span id="dupl-no-accounts"></span> accounts</p>
+                <p><i class='material-icons'>home</i> <span id="dupl-no-listings"></span> listings</p>
+                <p><i class='material-icons'>account_balance_wallet</i> &euro; <span id="dupl-price"></span> per night on average</p>
+                <p><i class='material-icons'>event_available</i> <span id="dupl-high-avail"></span>% listings are highly available </p>
+                <p style="margin-top: -14px; margin-left: 29px;">( > 60 days/year)</p>
+                <p><i class='material-icons'>info</i> <span id="dupl-multi-list"></span>% hosts have multi-listings</p>
+                <p><i class='material-icons'>filter_none</i> <span id="dupl-duplicates"></span> duplicates found</p>
+              </div>
             </div>
           </div>
         </div>
@@ -220,13 +221,15 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Airbnb dashboard</h5>
+          <h5 class="modal-title" id="exampleModalLabel">General info</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          Some extra help text here.
+          <p>Welcome to this dashboard. By analyzing publicly available information about the Airbnb's listings in Amsterdam, this dashboard supports the investigation of fraudulent Airbnb acitivy in the city of Amsterdam.</p>
+          <p>The goal of this dashboard is to aid the investigation of duplicate listings and support policy making regarding Airbnb.</p>
+          <p>The sidebar on the left contains the main menu. The <b>'Dashboard'</b> shows a general overview of the data and all neighbourhoods. Furthermore, the <b>'Neighbourhoods'</b> view focuses on the key statistics per neighbourhood, which can support policy making. Lastly, the <b>'Duplicates'</b> view, focuses on the duplicate listings found in Amsterdam. This view enables the user to evaluate and assign duplicates. By doing this, listings that violate regulations can be identified.</p>
         </div>
         <div class="modal-footer action-buttons">
           <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -242,6 +245,7 @@
   <!-- Data -->
   <script type="text/javascript" src="data/duplicates.js"></script>
   <script type="text/javascript" src="data/listings.js"></script>
+  <script type="text/javascript" src="data/listingsFromCsv.js"></script>
   <script type="text/javascript" src="data/accounts.js"></script>
   <script type="text/javascript" src="data/neighbourhoodsInfo.js"></script>
   <script type="text/javascript" src="data/neighbourhoodsLocations.js"></script>

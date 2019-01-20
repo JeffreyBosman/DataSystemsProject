@@ -123,13 +123,15 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Airbnb dashboard</h5>
+          <h5 class="modal-title" id="exampleModalLabel">General info</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          Some extra help text here.
+          <p>Welcome to this dashboard. By analyzing publicly available information about the Airbnb's listings in Amsterdam, this dashboard supports the investigation of fraudulent Airbnb acitivy in the city of Amsterdam.</p>
+          <p>The goal of this dashboard is to aid the investigation of duplicate listings and support policy making regarding Airbnb.</p>
+          <p>The sidebar on the left contains the main menu. The <b>'Dashboard'</b> shows a general overview of the data and all neighbourhoods. Furthermore, the <b>'Neighbourhoods'</b> view focuses on the key statistics per neighbourhood, which can support policy making. Lastly, the <b>'Duplicates'</b> view, focuses on the duplicate listings found in Amsterdam. This view enables the user to evaluate and assign duplicates. By doing this, listings that violate regulations can be identified.</p>
         </div>
         <div class="modal-footer action-buttons">
           <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -148,7 +150,16 @@
           </button>
         </div>
         <div class="modal-body">
-          Some extra help text here.
+          <p>This view shows the key stats for each neighbourhood. The following data is shown:</p>
+          <ul>
+            <li><b>risk indicator </b>(coloured circle): The colour of the circle indicates the potential risk of Airbnb fraud in this neighbourhood. Red means a high risk, yellow a medium risk and green a low risk. This risk score is based on the data shown in the table.</li>
+            <li><b># accounts</b>: The total number of accounts (i.e. hosts).</li>
+            <li><b># listings</b>: The total number of listings (i.e. advertisements).</li>
+            <li><b>price/night</b>: The average price per night.</li>
+            <li><b>% high availability</b>: An Airbnb host can setup a calendar for their listing so that it is only available for a few days or weeks a year. Other listings are available all year round. Entire homes or apartments highly available (> 60 days) year-round for tourists, probably don't have the owner present, could be illegal, and more importantly, are displacing residents.</li>
+            <li><b>% multiple listings</b>: Some Airbnb hosts have multiple listings. A host may list separate rooms in the same apartment, or multiple apartments or homes available in their entirity. Hosts with multiple listings are more likely to be running a business, are unlikely to be living in the property.</li>
+            <li><b># duplicates</b>: The number of duplicates found in this neighbourhood (with a matching score > 70%). One approach to mask fraud of the short-term rental regulations is to duplicate listings. This way it is harder to identify listings that are rented too often.</li>
+          </ul>
         </div>
         <div class="modal-footer action-buttons">
           <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
