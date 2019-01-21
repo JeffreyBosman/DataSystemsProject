@@ -312,10 +312,36 @@ if (view == "dashboard") {
 } else if (view == "duplicates") {
   // Load rows for duplicates table
   for (var i = 0; i < collection_new.length; i++) {
+    var id1 = collection_new[i].case_A_id;
+    var id2 = collection_new[i].case_B_id;
+
+    if ((listings[id1] == undefined) & (listings[id2] == undefined)) {
+      var compDays = 0;
+    } else if (listings[id1] == undefined) {
+      var compDays = listings[id2]['est_bookings_2018'];
+    } else if (listings[id2] == undefined) {
+      var compDays = listings[id1]['est_bookings_2018'];
+    } else {
+      var compDays = listings[id1]['est_bookings_2018']+listings[id2]['est_bookings_2018'];
+    }
+
+    if (compDays <= 30) {
+      var content = '';
+    } else {
+      var content = '<i class="material-icons" style="color:#888;"> warning </i>';
+    }
+
+    if (compDays < 10) {
+      var compDays = '00'+compDays;
+    } else if (compDays < 100) {
+      var compDays = '0'+compDays;
+    }
+
     $('<tr>'
+    +'<td class="risk-label"><span id="sort">'+ compDays +'</span>'+content+'</td>'
     +'<td>'+(collection_new[i].match_score*100).toPrecision(3)+'%</td>'
-    +'<td class="listing-id">'+collection_new[i].case_A_id+'</td>'
-    +'<td class="listing-id">'+collection_new[i].case_B_id+'</td>'
+    +'<td class="listing-id">'+id1+'</td>'
+    +'<td class="listing-id">'+id2+'</td>'
     +'<td class="action-buttons">'
     +'<a href="duplicate-view.html?ID='+collection_new[i].duplicate_ID+'"><button type="button" class="btn btn-secondary"><i class="material-icons">search</i>View report</button></a>'
     +'</td>'
@@ -353,7 +379,16 @@ if (view == "dashboard") {
       donutChart.draw('#donut-chart-attributes', [{value: (duplicates[i].feature_listing_attributes*100).toPrecision(3), valueText: (duplicates[i].feature_listing_attributes*100).toPrecision(3), text: 'amenities', color: '#aaa', middleText: 'TARGET', after:'%'}] );
       donutChart.draw('#donut-chart-location', [{value: (duplicates[i].feature_location*100).toPrecision(3), valueText: (duplicates[i].feature_location*100).toPrecision(3), text: 'location', color: '#aaa', middleText: 'TARGET', after:'%'}] )
 
-      var compDays = listings[id1]['est_bookings_2018']+listings[id2]['est_bookings_2018'];
+      if ((listings[id1] == undefined) & (listings[id2] == undefined)) {
+        var compDays = 0;
+      } else if (listings[id1] == undefined) {
+        var compDays = listings[id2]['est_bookings_2018'];
+      } else if (listings[id2] == undefined) {
+        var compDays = listings[id1]['est_bookings_2018'];
+      } else {
+        var compDays = listings[id1]['est_bookings_2018']+listings[id2]['est_bookings_2018'];
+      }
+
       if (compDays <= 30) {
         donutChart.draw('#donut-chart-days', [{value: (compDays/365*100), valueText: compDays, text: 'nights/year', color: '#39CA74', middleText: 'TARGET', after:''}] )
       } else {
@@ -405,7 +440,6 @@ if (view == "dashboard") {
 
 // INSERT DATA FOR SINGLE NEIGHBOURHOOD VIEW ----------------------------------------------------------------------------
 } else if (view == "neighbourhood-view") {
-  console.log(neighbourhoodsInfo)
   for (var i = 0; i < neighbourhoodsInfo.length; i++) {
     var nbh = neighbourhoodsInfo[i];
     var percentage_host_with_multiple_listings = Math.round( nbh.percentage_host_with_multiple_listings * 10 ) / 10;
