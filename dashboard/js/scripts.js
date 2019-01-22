@@ -294,9 +294,10 @@ if (view == "dashboard") {
   for (var i = 0; i < collection_new.length; i++) {
       if (i < dash_top) {
       $('<a href="duplicate-view.html?ID='+collection_new[i].duplicate_ID+'"><div class="dpl-row">'
-      +'<div class="dpl-icon"><i class="material-icons">filter_none</i></div>'
-      +'<div class="dpl-content">'+collection_new[i].case_A_id+' & '+collection_new[i].case_B_id+'</div>'
-      +'<div class="dpl-extra">'+ (collection_new[i].match_score*100).toPrecision(3) +'%</div>'
+      +'<div class="dpl-content"><i class="material-icons">home</i> '+collection_new[i].case_A_id+'</div>'
+      +'<div class="dpl-content" style="min-width:20px;">&</div>'
+      +'<div class="dpl-content"><i class="material-icons">home</i> '+collection_new[i].case_B_id+'</div>'
+      +'<div class="dpl-extra">match score '+ (collection_new[i].match_score*100).toPrecision(3) +'%</div>'
       +'</div></a>').appendTo('#dashboard-duplicate-listings .rows');
     }
   }
@@ -325,27 +326,33 @@ if (view == "dashboard") {
       var compDays = listings[id1]['est_bookings_2018']+listings[id2]['est_bookings_2018'];
     }
 
-    if (compDays <= 30) {
-      var content = '';
+    if (compDays <= 60) {
+      var riskColor = '#2ecc71';
     } else {
-      var content = '<i class="material-icons" style="color:#888;"> warning </i>';
+      var riskColor = '#e74c3c';
     }
 
     if (compDays < 10) {
-      var compDays = '00'+compDays;
+      var compDays2 = '00'+compDays;
     } else if (compDays < 100) {
-      var compDays = '0'+compDays;
+      var compDays2 = '0'+compDays;
+    } else if (compDays > 365) {
+      var compDays = 365;
+      var compDays2 = 365;
+    } else {
+      var compDays2 = compDays;
     }
 
     $('<tr>'
-    +'<td class="risk-label"><span id="sort">'+ compDays +'</span>'+content+'</td>'
+    +'<td class="duplicate-label" sorttable_customkey="'+compDays2+'"><span id="sort" style="background:'+riskColor+';">Nights booked: '+ compDays +'</span><i class="material-icons" style="color:'+ riskColor +';"> fiber_manual_record </i></td>'
     +'<td>'+(collection_new[i].match_score*100).toPrecision(3)+'%</td>'
-    +'<td class="listing-id">'+id1+'</td>'
-    +'<td class="listing-id">'+id2+'</td>'
+    +'<td class="listing-id"><i class="material-icons">home</i> #'+id1+'</td>'
+    +'<td class="listing-id"><i class="material-icons">home</i> #'+id2+'</td>'
     +'<td class="action-buttons">'
     +'<a href="duplicate-view.html?ID='+collection_new[i].duplicate_ID+'"><button type="button" class="btn btn-secondary"><i class="material-icons">search</i>View report</button></a>'
     +'</td>'
     +'</tr>').appendTo('#duplicates tbody');
+
   }
 
 // INSERT DATA FOR SINGLE DUPLICATE VIEW --------------------------------------------------------------------------------
@@ -389,8 +396,11 @@ if (view == "dashboard") {
         var compDays = listings[id1]['est_bookings_2018']+listings[id2]['est_bookings_2018'];
       }
 
-      if (compDays <= 30) {
+      if (compDays <= 60) {
         donutChart.draw('#donut-chart-days', [{value: (compDays/365*100), valueText: compDays, text: 'nights/year', color: '#39CA74', middleText: 'TARGET', after:''}] )
+      } else if (compDays > 365) {
+        var compDays = 365;
+        donutChart.draw('#donut-chart-days', [{value: (compDays/365*100), valueText: '~'+compDays, text: 'nights/year', color: '#FF0000', middleText: 'TARGET', after:''}] )
       } else {
         donutChart.draw('#donut-chart-days', [{value: (compDays/365*100), valueText: compDays, text: 'nights/year', color: '#FF0000', middleText: 'TARGET', after:''}] )
       }
@@ -411,21 +421,17 @@ if (view == "dashboard") {
 
     var selectedNeighbourhood = nbh.name
 
-    var rank = parseInt(nbh.risk_rank)
-    if (rank <= 5) {
+    console.log(nbh.risk_rank)
+    if (nbh.risk_rank <= 0.2) {
       var riskColor = '#e74c3c';
-    } else if ((rank > 5) & (rank <= 15)) {
+    } else if ((nbh.risk_rank > 0.2) & (nbh.risk_rank <= 0.6)) {
       var riskColor = '#f1c40f';
     } else {
       var riskColor = '#2ecc71';
     }
 
-    if (rank < 10) {
-      var rank = '0'+rank;
-    }
-
     $('<tr class="clickable-row" data-href="neighbourhood-view.html?name='+selectedNeighbourhood+'">'
-      +'<td class="risk-label"><span id="sort">'+ rank +'</span><i class="material-icons" style="color:'+ riskColor +';"> fiber_manual_record </i></td>'
+      +'<td class="risk-label"><span id="sort">'+ nbh.risk_rank +'</span><i class="material-icons" style="color:'+ riskColor +';"> fiber_manual_record </i></td>'
       +'<td><span style="font-weight: 500;">'+nbh.name+'</span></td>'
       +'<td>'+nbh.accounts+'</td>'
       +'<td>'+nbh.listings+'</td>'

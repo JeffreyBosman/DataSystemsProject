@@ -78,6 +78,43 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
         <div class="container-fluid">
+          <div class="row">
+              <div class="col-sm-6">
+                <div id="dashboard-duplicate-listings" class="databox">
+                  <h2>Top duplicate matches (<span id="total-showing">5</span> of <span id="total-duplicates">?</span>)</h2>
+
+                  <div class="rows"></div>
+
+                  <a href="duplicates.html" class="databox-link">
+                    Show all duplicate listings <i class="material-icons">keyboard_arrow_right</i>
+                  </a>
+
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div id="dashboard-overview-stats" class="databox">
+                  <h2>Dashbaord statistics</h2>
+
+                  <svg id="donut-chart"></svg>
+                  <p style="margin-top: 50px;">
+                    <i style="color:#e3e3e3" class="material-icons">label</i>
+                    <span id="unresolved"></span> unresolved duplicates
+                  </p>
+                  <p>
+                    <i style="color:#2ecc71" class="material-icons">label</i>
+                    <span id="match"></span> marked as correct match
+                  </p>
+                  <p>
+                    <i style="color:#ff6b6b" class="material-icons">label</i>
+                    <span id="no-match"></span> marked as wrong match
+                  </p>
+                  <p>
+                    <i style="color:#f1c40f" class="material-icons">label</i>
+                    <span id="unsolvable"></span> marked as unsolvable
+                  </p>
+                </div>
+              </div>
+            </div>
             <div class="row">
               <div class="col">
                 <div class="databox databox-alt">
@@ -212,7 +249,7 @@
                     </div>
                     <div class="col-sm-4">
                       <div class="databox map-menu">
-                        <h2>Map Controls</h2>
+                        <h2>Information per neighbourhood</h2>
 
                         <!--
                         <div class="setting">
@@ -289,43 +326,6 @@
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <div id="dashboard-overview-stats" class="databox">
-                  <h2>Overview stats</h2>
-
-                  <svg id="donut-chart"></svg>
-                  <p style="margin-top: 50px;">
-                    <i style="color:#e3e3e3" class="material-icons">label</i>
-                    <span id="unresolved"></span> unresolved duplicates
-                  </p>
-                  <p>
-                    <i style="color:#2ecc71" class="material-icons">label</i>
-                    <span id="match"></span> marked as correct match
-                  </p>
-                  <p>
-                    <i style="color:#ff6b6b" class="material-icons">label</i>
-                    <span id="no-match"></span> marked as wrong match
-                  </p>
-                  <p>
-                    <i style="color:#f1c40f" class="material-icons">label</i>
-                    <span id="unsolvable"></span> marked as unsolvable
-                  </p>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div id="dashboard-duplicate-listings" class="databox">
-                  <h2>Top duplicate listings (<span id="total-showing">5</span> of <span id="total-duplicates">?</span>)</h2>
-
-                  <div class="rows"></div>
-
-                  <a href="duplicates.html" class="databox-link">
-                    Show all duplicate listings <i class="material-icons">keyboard_arrow_right</i>
-                  </a>
-
-                </div>
-              </div>
-            </div>
         </div>
     </div>
   </div>
@@ -341,9 +341,12 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>Welcome to this dashboard. By analyzing publicly available information about the Airbnb's listings in Amsterdam, this dashboard supports the investigation of fraudulent Airbnb acitivy in the city of Amsterdam.</p>
-          <p>The goal of this dashboard is to aid the investigation of duplicate listings and support policy making regarding Airbnb.</p>
-          <p>The sidebar on the left contains the main menu. The <b>'Dashboard'</b> shows a general overview of the data and all neighbourhoods. Furthermore, the <b>'Neighbourhoods'</b> view focuses on the key statistics per neighbourhood, which can support policy making. Lastly, the <b>'Duplicates'</b> view, focuses on the duplicate listings found in Amsterdam. This view enables the user to evaluate and assign duplicates. By doing this, listings that violate regulations can be identified.</p>
+          <p>Welcome to this dashboard. </p>
+          <p>By analyzing publicly available information about the Airbnb's listings in Amsterdam, this dashboard supports the investigation of fraudulent Airbnb activity in the city of Amsterdam.</p>
+          <p>The goal of this dashboard is to aid the investigation of duplicate listings and support policy making regarding Airbnb. The sidebar on the left contains the main menu. </p>
+          <p>The <b>'Dashboard'</b> shows a general overview of the data and all neighbourhoods.</p>
+          <p>Furthermore, the <b>'Neighbourhoods'</b> view focuses on the key statistics per neighbourhood, which can support policy making. </p>
+          <p>Lastly, the <b>'Duplicates'</b> view, focuses on the duplicate listings found in Amsterdam. This view enables the user to evaluate and assign duplicates. By doing this, listings that violate regulations can be identified.</p>
         </div>
         <div class="modal-footer action-buttons">
           <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
