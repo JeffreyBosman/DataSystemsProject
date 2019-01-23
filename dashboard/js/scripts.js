@@ -177,16 +177,16 @@ if (typeof duplicates !== 'undefined') {
     // Seed data to populate the donut pie chart
     var duplicatesAggr = [{
       "label": "correct",
-      "value": total_match.toString(),
+      "value": 70, //total_match.toString(),
       "color": "#2ecc71"
     }, {
       "label": "incorrect",
-      "value": total_no_match.toString(),
-      "color": "#ff6b6b"
+      "value": 70, //total_no_match.toString(),
+      "color": "#ED4C67"
     }, {
       "label": "unsolvable",
-      "value": total_unsolvable.toString(),
-      "color": "#feca57"
+      "value": 70, //total_unsolvable.toString(),
+      "color": "#aaa"
     }, {
       "label": "unresolved",
       "value": total_new.toString(),
@@ -326,10 +326,21 @@ if (view == "dashboard") {
       var compDays = listings[id1]['est_bookings_2018']+listings[id2]['est_bookings_2018'];
     }
 
-    if (compDays <= 60) {
-      var riskColor = '#2ecc71';
+    if (compDays <= 20) {
+      var style = '';
+      var label = '<i class="material-icons" style="color:#ccc;">looks_5</i>';
+    } else if (compDays <= 30) {
+      var style = '';
+      var label = '<i class="material-icons" style="color:#aaa;">looks_4</i>';
+    } else if (compDays <= 59) {
+      var style = '';
+      var label = '<i class="material-icons" style="color:#777">looks_3</i>';
+    } else if (compDays <= 70) {
+      var style = 'background: #e74c3c';
+      var label = '<i class="material-icons" style="color:#444">looks_two</i>';
     } else {
-      var riskColor = '#e74c3c';
+      var style = 'background: #e74c3c';
+      var label = '<i class="material-icons" style="color:#000">looks_one</i>';
     }
 
     if (compDays < 10) {
@@ -337,17 +348,17 @@ if (view == "dashboard") {
     } else if (compDays < 100) {
       var compDays2 = '0'+compDays;
     } else if (compDays > 365) {
-      var compDays = 365;
+      var compDays = '365';
       var compDays2 = 365;
     } else {
       var compDays2 = compDays;
     }
 
     $('<tr>'
-    +'<td class="duplicate-label" sorttable_customkey="'+compDays2+'"><span id="sort" style="background:'+riskColor+';">Nights booked: '+ compDays +'</span><i class="material-icons" style="color:'+ riskColor +';"> fiber_manual_record </i></td>'
+    +'<td class="duplicate-label" sorttable_customkey="'+compDays2+'"><span id="sort" style="'+style+';">Nights booked (est.): '+ compDays +'</span>'+ label +'</td>'
     +'<td>'+(collection_new[i].match_score*100).toPrecision(3)+'%</td>'
-    +'<td class="listing-id"><i class="material-icons">home</i> #'+id1+'</td>'
-    +'<td class="listing-id"><i class="material-icons">home</i> #'+id2+'</td>'
+    +'<td class="listing-id"><i class="material-icons">home</i> '+id1+'</td>'
+    +'<td class="listing-id"><i class="material-icons">home</i> '+id2+'</td>'
     +'<td class="action-buttons">'
     +'<a href="duplicate-view.html?ID='+collection_new[i].duplicate_ID+'"><button type="button" class="btn btn-secondary"><i class="material-icons">search</i>View report</button></a>'
     +'</td>'
@@ -421,17 +432,24 @@ if (view == "dashboard") {
 
     var selectedNeighbourhood = nbh.name
 
-    console.log(nbh.risk_rank)
     if (nbh.risk_rank <= 0.2) {
-      var riskColor = '#e74c3c';
-    } else if ((nbh.risk_rank > 0.2) & (nbh.risk_rank <= 0.6)) {
-      var riskColor = '#f1c40f';
+      var label = '<i class="material-icons" style="color:#000">looks_one</i>';
+    } else if ((nbh.risk_rank > 0.2) & (nbh.risk_rank <= 0.4)) {
+      var label = '<i class="material-icons" style="color:#666">looks_two</i>';
+    } else if ((nbh.risk_rank > 0.4) & (nbh.risk_rank <= 0.6)) {
+      var label = '<i class="material-icons" style="color:#aaa">looks_3</i>';
     } else {
-      var riskColor = '#2ecc71';
+      var label = '<i class="material-icons" style="color:#ccc;">looks_4</i>';
+    }
+
+    if (nbh.risk_rank == 0) {
+      var risk_rank = '0.000';
+    } else {
+      var risk_rank = nbh.risk_rank;
     }
 
     $('<tr class="clickable-row" data-href="neighbourhood-view.html?name='+selectedNeighbourhood+'">'
-      +'<td class="risk-label"><span id="sort">'+ nbh.risk_rank +'</span><i class="material-icons" style="color:'+ riskColor +';"> fiber_manual_record </i></td>'
+      +'<td class="risk-label"><span id="sort">'+ risk_rank +'</span>'+ label +'</td>'
       +'<td><span style="font-weight: 500;">'+nbh.name+'</span></td>'
       +'<td>'+nbh.accounts+'</td>'
       +'<td>'+nbh.listings+'</td>'
@@ -440,8 +458,6 @@ if (view == "dashboard") {
       +'<td class="perc">'+percentage_host_with_multiple_listings+'</td>'
       +'<td>'+duplicates+'</td>'
       +'</tr>').appendTo('#neighbourhoods tbody');
-
-
   }
 
 // INSERT DATA FOR SINGLE NEIGHBOURHOOD VIEW ----------------------------------------------------------------------------
