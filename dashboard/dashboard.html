@@ -39,7 +39,8 @@
 
   <!-- map data -->
   <script src="data/neighbourhoodsLocations.js" type="text/javascript"></script>
-  <script src="data/listingsjson.js" type="text/javascript"></script>
+  <script src="data/neighbourhoodsInfo.js" type="text/javascript"></script>
+  <!-- <script src="data/listingsjson.js" type="text/javascript"></script> --> 
 
   <!-- Set view -->
   <script charset="utf-8"> var view = "dashboard"; </script>
@@ -126,7 +127,11 @@
                           <script>
 
                             function getDataFromJson(neighbourhood){
-                              return listingsjson[neighbourhood];
+                              for (var i = 0; i < neighbourhoodsInfo.length; i++){
+                                if(neighbourhoodsInfo[i].name == neighbourhood){
+                                  return neighbourhoodsInfo[i];
+                                }
+                              }
                             }
 
                             var map = L.map('mapid').setView([52.360, 4.893], 12);
@@ -160,10 +165,10 @@
 
                             // get color depending on population density value
                             function getColor(d) {
-                              return d > 2000 ? '#ee5253' :
-                                  d > 1000  ? '#ff9f43' :
-                                  d > 500   ? '#feca57' :
-                                        '#badc58';
+                              return d > 50 ? '#6C3483' :
+                                  d > 25  ? '#FF0000' :
+                                  d > 10   ? '#EB984E' :
+                                        '#F7DC6F';
                             }
 
                             function style(feature) {
@@ -173,7 +178,7 @@
                                 color: 'white',
                                 dashArray: '3',
                                 fillOpacity: 0.5,
-                                fillColor: getColor(getDataFromJson(feature.properties.neighbourhood).summary)
+                                fillColor: getColor(getDataFromJson(feature.properties.neighbourhood).duplicates)
                               };
                             }
 
@@ -234,15 +239,35 @@
                                 popup.setLatLng(e.latlng).setContent(
                                   "<h2>Overview</h2>" +
                                   "<p><i class='material-icons'>pin_drop</i> <b>" + selectedNeighbourhood + "</b></p>" +
-                                  "<p><i class='material-icons'>home</i> " + getDataFromJson(selectedNeighbourhood).id + " listings</p>" +
-                                  "<p><i class='material-icons'>person</i> " + getDataFromJson(selectedNeighbourhood).reviews_per_month + " accounts </p>" +
-                                  "<p><i class='material-icons'>filter_none</i> " + getDataFromJson(selectedNeighbourhood).summary + " duplicates found</p>" +
+                                  "<p><i class='material-icons'>home</i> " + getDataFromJson(selectedNeighbourhood).listings + " listings</p>" +
+                                  "<p><i class='material-icons'>person</i> " + getDataFromJson(selectedNeighbourhood).accounts + " accounts </p>" +
+                                  "<p><i class='material-icons'>filter_none</i> " + getDataFromJson(selectedNeighbourhood).duplicates + " duplicates found</p>" +
                                   "<a href='neighbourhood-view.html?name="+selectedNeighbourhood+"'>Show more</a>"
                                 ).openOn(map);
                               }
                             }
 
                             map.on('click', onMapClick);
+
+                            var legend = L.control({position: 'bottomright'});
+
+                            legend.onAdd = function (map) {
+
+                                var div = L.DomUtil.create('div', 'info legend'),
+                                    grades = [0, 10, 25, 50],
+                                    labels = [];
+
+                                // loop through our density intervals and generate a label with a colored square for each interval
+                                for (var i = 0; i < grades.length; i++) {
+                                    div.innerHTML +=
+                                        '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+                                        grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+                                }
+
+                                return div;
+                            };
+
+                            legend.addTo(map);
                         </script>
                         <!-- ################################################/code voor de kaart######################################## -->
                       </div>
@@ -362,8 +387,6 @@
 
   <!-- Data -->
   <script type="text/javascript" src="data/duplicates.js"></script>
-  <script type="text/javascript" src="data/neighbourhoodsInfo.js"></script>
-  <script type="text/javascript" src="data/neighbourhoodsLocations.js"></script>
 
   <!-- Custom js -->
   <script src="js/scripts.js"></script>
