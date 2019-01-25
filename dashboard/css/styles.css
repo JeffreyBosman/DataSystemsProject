@@ -177,7 +177,7 @@ table tbody td.duplicate-label #sort {
   opacity: 0;
   margin-left: 0px;
 }
-table tbody tr:hover #sort {
+table tbody tr:hover td.duplicate-label #sort {
   opacity: 1;
   width: 155px;
   position: absolute;

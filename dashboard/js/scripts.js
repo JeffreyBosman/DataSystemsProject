@@ -177,15 +177,15 @@ if (typeof duplicates !== 'undefined') {
     // Seed data to populate the donut pie chart
     var duplicatesAggr = [{
       "label": "correct",
-      "value": 70, //total_match.toString(),
+      "value": total_match.toString(),
       "color": "#2ecc71"
     }, {
       "label": "incorrect",
-      "value": 70, //total_no_match.toString(),
+      "value": total_no_match.toString(),
       "color": "#ED4C67"
     }, {
       "label": "unsolvable",
-      "value": 70, //total_unsolvable.toString(),
+      "value": total_unsolvable.toString(),
       "color": "#aaa"
     }, {
       "label": "unresolved",
@@ -357,8 +357,8 @@ if (view == "dashboard") {
     $('<tr>'
     +'<td class="duplicate-label" sorttable_customkey="'+compDays2+'"><span id="sort" style="'+style+';">Nights booked (est.): '+ compDays +'</span>'+ label +'</td>'
     +'<td>'+(collection_new[i].match_score*100).toPrecision(3)+'%</td>'
-    +'<td class="listing-id"><i class="material-icons">home</i> '+id1+'</td>'
-    +'<td class="listing-id"><i class="material-icons">home</i> '+id2+'</td>'
+    +'<td class="listing-id">'+id1+'</td>'
+    +'<td class="listing-id">'+id2+'</td>'
     +'<td class="action-buttons">'
     +'<a href="duplicate-view.html?ID='+collection_new[i].duplicate_ID+'"><button type="button" class="btn btn-secondary"><i class="material-icons">search</i>View report</button></a>'
     +'</td>'
